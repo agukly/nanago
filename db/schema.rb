@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_085242) do
+ActiveRecord::Schema.define(version: 2020_03_02_092438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.date "start_day"
+    t.date "end_day"
+    t.integer "total_price"
+    t.bigint "pram_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pram_id"], name: "index_bookings_on_pram_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "prams", force: :cascade do |t|
+    t.string "brand"
+    t.string "model"
+    t.text "location"
+    t.integer "year"
+    t.string "description"
+    t.integer "price"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_prams_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "score"
+    t.string "comment"
+    t.bigint "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,4 +63,8 @@ ActiveRecord::Schema.define(version: 2020_03_02_085242) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "prams"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "prams", "users"
+  add_foreign_key "reviews", "bookings"
 end
