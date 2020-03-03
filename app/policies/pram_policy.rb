@@ -1,4 +1,4 @@
-class PramsPolicy < ApplicationPolicy
+class PramPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
