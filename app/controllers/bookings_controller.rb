@@ -13,6 +13,8 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
     @review = Review.new
+    authorize @booking
+     #authorize @review -- no review policy yet
   end
 
 end

@@ -2,4 +2,4 @@
 Your Email: <%= @user.email %><br>
 Your First Name: <%= @user.first_name %><br>
 Your Last Name: <%= @user.last_name %><br>
-
+<%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>

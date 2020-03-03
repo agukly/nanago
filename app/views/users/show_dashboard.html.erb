@@ -1,5 +1,28 @@
-<h1>Welcome, <%= @user.first_name %></h1><br>
-Your Email: <%= @user.email %><br>
-Your First Name: <%= @user.first_name %><br>
-Your Last Name: <%= @user.last_name %><br>
-
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-3 d-flex flex-column align-items-center border bg-light pt-3">
+            <% if @user.photo.attached? %>
+                <%= cl_image_tag @current_user.photo.key, class:"avatar-larger" %>
+            <% else %>
+                <%= image_tag "default_avatar.png", class:"avatar-larger" %>
+            <% end %>
+            <div class="pt-5">
+            <%= link_to "Edit My Profile", edit_user_registration_path, class:"btn btn-primary" %>
+            </div>
+        </div>
+        <div class="col pt-3">
+            <h1 pt-5>Welcome, <%= @user.first_name %></h1>
+            <p>A member since <%= @user.created_at.strftime("%B %Y")  %></p>
+            <h2>My Details</h2>
+            <p>Name: <%= @user.first_name %> <%= @user.last_name %></p>
+            <h2>My Prams</h2>
+            <ul>
+            <% @user.prams.each do |pram| %>
+                <li><%= pram.brand %></li>
+            <% end %>
+            </ul>
+            <h2>My Reviews</h2>
+            <p>No review at the moment</p>
+        </div>
+   </div>
+</div>

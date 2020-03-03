@@ -16,5 +16,4 @@ Rails.application.routes.draw do
 
   get "dashboard", to: "users#show_dashboard", as: :dashboard
   get "user/:id", to: "users#show", as: :user
-
 end
