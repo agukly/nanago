@@ -1,7 +1,5 @@
 class Review < ApplicationRecord
-  belongs_to :user, through: :bookings
   belongs_to :booking
-
-  validates :score, presence: true, :inclusion {range(1..5)}, numericality: { only_integer: true }
+  validates :score, presence: true, numericality: { only_integer: true, bigger_than: 0, less_than: 6 }
   validates :comment, length: { maximum: 200 }
 end
