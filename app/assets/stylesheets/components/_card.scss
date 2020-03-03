@@ -1,12 +1,23 @@
+.text-block h6 {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.text-primary {
+  color: #8C56A2 !important;
+}
+.main-card-picture {
+  height: 200px;
+  background-position: center;
+  background-size: cover;
+}
+
 .pram-photo-card {
   background-size: cover;
-  background-position: center bottom;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   height: 350px;
   width: 100%;
@@ -22,4 +33,30 @@
   h2 {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   }
+}
+
+.card-pram {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  text-decoration: none;
+  color: #333333;
+
+    h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  }
+    p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+  }
+}
+
+.card-pram .card-pram-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }

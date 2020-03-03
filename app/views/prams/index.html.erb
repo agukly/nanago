@@ -1,10 +1,28 @@
-<h2>List of all prams</h2>
-
-<% @prams.each do |pram| %>
-  <%= pram.brand %>
-  <%= pram.model %>
-  <%= pram.year %>
-  <%= pram.location %>
-  <%= pram.description %>
-  <%= pram.price %>
-<% end %>
+<div class="container">
+  <h2 class="text-primary text-left my-3">Explore</h2>
+    <div class="row">
+        <% @prams.each do |pram| %>
+      <div class="col-md-3">
+        <%= link_to pram_path(pram.id), class: 'card-pram' do %>
+        <div class="card-pram mb-4 rounded">
+          <% if pram.photos.attached? %>
+            <div class="main-card-picture" style="background-image: url('<%=cl_image_path pram.photos[0].key %>')">
+            </div>
+          <% else %>
+            <div class="main-card-picture" style="background-image: url('<%= image_path "default-pram.jpg" %>')">
+          </div>
+          <% end %>
+            <div class="card-pram-infos">
+              <div>
+                <h6><%= pram.brand %> <%= pram.model %></h6>
+                <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
+                <%= pram.location %></p>
+              </div>
+              <h2 class="card-pram-pricing"><%= pram.price %>$</h2>
+            </div>
+          </div>
+      </div>
+      <% end %>
+        <% end %>
+    </div>
+</div>
