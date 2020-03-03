@@ -1,3 +1,4 @@
+
 Pram.create!(
   brand: "LuxStroller",
   model: "TI23",
