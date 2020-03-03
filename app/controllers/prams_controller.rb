@@ -39,6 +39,6 @@ class PramsController < ApplicationController
   end
 
   def pram_params
-    params.require(:pram).permit(:brand, :model, :location, :year, :description, :price)
+    params.require(:pram).permit(:brand, :model, :location, :year, :description, :price, photos: [])
   end
 end
