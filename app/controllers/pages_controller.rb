@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   end
 
   def my_bookings
+    @pram = Pram.new
     @bookings = current_user.bookings
   end
 
