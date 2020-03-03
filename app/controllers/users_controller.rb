@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
+    def show_dashboard
+        @user = current_user
+        authorize @user
+    end
+    
     def show
-       # params[:id] == current_user.id unless params[:id]
-       # @user = User.find(params[:id])
-       @user = User.find(params[:id])
+        @user = User.find(params[:id])
+        authorize @user
     end
 end
