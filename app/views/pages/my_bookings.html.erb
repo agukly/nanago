@@ -1,0 +1,31 @@
+
+<div class="container">
+  <h2 class="text-primary text-left my-3">Your bookings</h2>
+    <div class="row">
+        <% @bookings.each do |booking| %>
+      <div class="col-md-3">
+        <%= link_to booking_path(booking.id), class: 'card-pram' do %>
+        <div class="card-pram mb-4 rounded">
+          <% if @pram.photos.attached? %>
+            <div class="main-card-picture" style="background-image: url('<%=cl_image_path pram.photos[0].key %>')">
+            </div>
+          <% else %>
+            <div class="main-card-picture" style="background-image: url('<%= image_path "default-pram.jpg" %>')">
+          </div>
+          <% end %>
+            <div class="card-pram-infos">
+              <div>
+                <h6><%=booking.pram.brand %> <%=booking.pram.model%></h6>
+                <p><%=booking.start_day.strftime("%e %B %Y") %> - <%=booking.end_day.strftime("%e %B %Y") %></p>
+                <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
+                <%= booking.pram.location %></p>
+              </div>
+              <h2 class="card-pram-pricing"><%= booking.total_price %>$</h2>
+            </div>
+          </div>
+      </div>
+      <% end %>
+        <% end %>
+    </div>
+</div>
+
