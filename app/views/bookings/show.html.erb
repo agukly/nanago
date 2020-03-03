@@ -5,13 +5,41 @@
 <p><%=@booking.end_day %></p>
 <p><%=@booking.total_price %></p>
 
-<h3>Add a review</h3>
+
 <div class="container">
   <div class="row">
-    <div class="col-md-6 mx-auto">
-      <%= render 'reviews/form', booking: @booking, review: @review %>
+    <div class="col-sm">
+        <div class="card-trip-booking">
+          <img class="img-booking" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+          <div class="card-trip-infos-booking">
+            <div>
+              <h2><%="#{@booking.pram.brand} / #{@booking.pram.model}"%> </h2>
+              <p><%=@booking.pram.description%></p>
+            </div>
+            <h2 class="card-trip-pricing-booking">£99.99</h2>
+          </div>
+        </div>
+    </div>
+    <div class="col-sm">
+      <p>MAP</p>
+      <img class= "img-booking" src="https://images.unsplash.com/photo-1478860409698-8707f313ee8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" alt="">
     </div>
   </div>
 </div>
+
+
+<div class="bookings-container">
+
+  <h3>Add a review</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <%= render 'reviews/form', booking: @booking, review: @review %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 
 
