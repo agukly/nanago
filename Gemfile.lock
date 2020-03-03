@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: d13a99ffe924936b061bef638885fa2d4e6dedfe
+  specs:
+    faker (2.10.2)
+      i18n (>= 1.6, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -197,6 +204,7 @@ DEPENDENCIES
   bootsnap
   devise
   dotenv-rails
+  faker!
   font-awesome-sass (~> 5.12.0)
   jbuilder (~> 2.0)
   listen (~> 3.0.5)
