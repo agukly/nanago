@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   resources :bookings, only: [:show] do
     resources :reviews, only: [:new, :create]
+    resources :conversations do
+      resources :messages
+    end
   end
 
   get "my_bookings", to: "pages#my_bookings" #bookings of current user
