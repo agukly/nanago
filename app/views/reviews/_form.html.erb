@@ -1,0 +1,11 @@
+<% if @review.errors.any? %>
+  <% @review.errors.full_messages.each do |error| %>
+    <p><%= error %></p>
+  <% end %>
+<% end %>
+
+<%= simple_form_for [booking, review] do |f| %>
+  <%= f.input :comment %>
+  <%= f.input :score %>
+  <%= f.submit %>
+<% end %>
