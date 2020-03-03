@@ -2,6 +2,7 @@ class ConversationsController < ApplicationController
 
 def index
   @conversations = policy_scope(Conversation)
+  @conversation = Conversation.new
 end
 
 def show
@@ -12,6 +13,7 @@ def show
 end
 
 def new
+  @conversation = Conversation.new
   authorize @conversation
 end
 
@@ -24,10 +26,10 @@ def create
   @conversation = Conversation.create!(conversation_params)
  end
  authorize @conversation
- redirect_to conversation_messages_path(@conversation)
+ redirect_to conversation_path(@conversation)
 end
 private
  def conversation_params
-  params.permit(:sender_id, :recipient_id)
+  params.require(:conversation).permit(:sender_id, :recipient_id)
  end
 end

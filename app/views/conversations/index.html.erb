@@ -1,1 +1,20 @@
-<h1>BLA</h1>
+<h1>My Conversations</h1>
+<% @conversations.each do |conversation| %>
+<p><%= User.find(conversation.sender_id).first_name %></p>
+<p><%= User.find(conversation.recipient_id).first_name %></p>
+<p><%= conversation.messages.count %></p>
+<% end %>
+
+<h1>New Conversation</h1>
+<p><%=@conversation %></p>
+<p><%=current_user.id%></p>
+<%= simple_form_for @conversation do |f| %>
+  <%= f.hidden_field :sender_id, value: current_user.id, type: "hidden"%>
+  <% array = [] %>
+  <% User.all.each do |user| %>
+  <% array.push(user.first_name) %>
+  <% end %>
+  <%= f.input :recipient_id, :collection => array%>
+  <%= f.submit "Send"%>
+<% end %>
+
