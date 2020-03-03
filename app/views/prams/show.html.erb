@@ -1,2 +1,11 @@
 <h1>Prams#show</h1>
 <p>Find me in app/views/prams/show.html.erb</p>
+<%= simple_form_for (@pram, @booking) do |f| %>
+  <%= f.input :start_day, html5:true %>
+  <%= f.input :end_day, html5:true %>
+  <%= f.input :total_price %>
+  <%= f.input :pram %>
+  <%= f.input :user %>
+
+  <%= f.button :submit %>
+<% end %>

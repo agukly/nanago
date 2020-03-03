@@ -1,6 +1,6 @@
 class Pram < ApplicationRecord
   belongs_to :user
-  belongs_to :booking
+  has_many :bookings
 
   validates  :price, presence: true, numericality: { only_integer: true }
   validates  :model, presence: true, length: { maximum: 200 }
