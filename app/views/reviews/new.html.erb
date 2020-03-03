@@ -1,2 +1,8 @@
-<h1>Reviews#new</h1>
-<p>Find me in app/views/reviews/new.html.erb</p>
+<h1>Add a review</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <%= render 'form', pram: @pram, review: @review %>
+    </div>
+  </div>
+</div>
