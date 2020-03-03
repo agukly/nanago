@@ -3,7 +3,6 @@ class BookingsController < ApplicationController
   end
 
   def new
-
   end
 
   def create

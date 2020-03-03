@@ -38,10 +38,11 @@ end
     )
 }
 
-Conversation.create!(
+1.times { Conversation.create!(
   sender_id: 1,
   recipient_id: 2
 )
+}
 
 3.times { Message.create!(
     body: "I wanted to let you know bliblablu",
