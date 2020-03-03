@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "my_reviews", to: "pages#my_reviews"
   get "my_prams", to: "pages#my_prams"
 
-  get "dashboard/:id", to: "users#show", as: :dashboard
+  get "dashboard", to: "users#show_dashboard", as: :dashboard
+  get "user/:id", to: "users#show", as: :user
 
 end
