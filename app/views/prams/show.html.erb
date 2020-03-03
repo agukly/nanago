@@ -1,11 +1,38 @@
-<h1>Prams#show</h1>
-<p>Find me in app/views/prams/show.html.erb</p>
-<%= simple_form_for (@pram, @booking) do |f| %>
-  <%= f.input :start_day, html5:true %>
-  <%= f.input :end_day, html5:true %>
-  <%= f.input :total_price %>
-  <%= f.input :pram %>
-  <%= f.input :user %>
+<div class="container">
+  <div class="row">
+    <div class="show-card col-md-6 mx-auto p-0">
+      <% if @pram.photos.attached? %>
+      <div class="pram-photo-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @pram.photos[0].key, height: 300, width: 400, crop: :fill %>')">
+      </div>
+      <% end %>
+      <div class="d-flex flex-column w-100">
+        <h2 class="align-items-center text-center pt-2"><%= @pram.brand %> <%= @pram.model %></h2>
+        <div class="pl-2 text-decoration-none" id="ingredients">
+          <%#= simple_form_for ([@pram, @booking]) do |f| %>
+          <%#= f.input :start_day, html5:true %>
+          <%#= f.input :end_day, html5:true %>
+          <%#= f.input :total_price %>
+          <%#= f.input :pram %>
+          <%#= f.input :user %>
+          <%#= f.button :submit %>
+          <%# end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <%= f.button :submit %>
-<% end %>
+<div class="card-trip">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+  <div class="card-trip-infos">
+    <div>
+      <h2>Title here</h2>
+      <p>Short description here!</p>
+    </div>
+    <h2 class="card-trip-pricing">£99.99</h2>
+    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+  </div>
+</div>
+
+
+
