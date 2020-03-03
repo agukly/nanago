@@ -11,6 +11,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @pram = Pram.new
     @booking = Booking.find(params[:id])
     @review = Review.new
     authorize @booking
