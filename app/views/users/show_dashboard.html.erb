@@ -15,14 +15,35 @@
             <p>A member since <%= @user.created_at.strftime("%B %Y")  %></p>
             <h2>My Details</h2>
             <p>Name: <%= @user.first_name %> <%= @user.last_name %></p>
-            <h2>My Prams</h2>
-            <ul>
-            <% @user.prams.each do |pram| %>
-                <li><%= pram.brand %></li>
+            <h2>My Prams (Top 5)</h2>
+            <% @user.prams.first(5).each do |pram| %>
+                <div class="pt-3">
+                <div class="card-product">
+                    <% if pram.photos.attached? %>
+                        <%=cl_image_tag pram.photos[0].key %>
+                    <% else %>
+                        <%= image_tag "default-pram.jpg" %>
+                    <% end %>
+                    <div class="card-product-infos">
+                        <h2><%= pram.brand %> <%= pram.model %></h2>
+                        <p><%= pram.location %></p>
+                        <h5><strong><%= pram.price %> $</strong></h5>
+                    </div>
+                </div>
+                </div>
             <% end %>
-            </ul>
-            <h2>My Reviews</h2>
-            <p>No review at the moment</p>
+            <h2 class="pt-5">My Bookings (Last 5)</h2>
+            <% @user.bookings.first(5).each do |pram| %>
+                <div class="notification">
+                    <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
+                    <div class="notification-content">
+                        <p><small>14th January</small></p>
+                        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+                    </div>
+                </div>
+            <% end %>
         </div>
    </div>
 </div>
+
+
