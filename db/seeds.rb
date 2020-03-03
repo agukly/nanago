@@ -1,6 +1,13 @@
 require 'faker'
 require 'date'
 
+Review.destroy_all
+Booking.destroy_all
+Pram.destroy_all
+Message.destroy_all
+Conversation.destroy_all
+User.destroy_all
+
 def randomStrollerData
   brand = ["Hauck", "Chicco", "Thule", "ABC Design", "Mountain Buggy"].sample
   model = ["Citi Neo II (Caviar / Stone)", "Liteway 3 (Jet Black)", "Rapid 3R Trioset (Charcoal)", "Salsa 4 Air (Asphalt)", "Sleek + Bassinet (Navy Blue)"].sample
@@ -29,6 +36,18 @@ end
     email: Faker::Internet.email,
     password: "123456"
     )
+}
+
+Conversation.create!(
+  sender_id: 1,
+  recipient_id: 2
+)
+
+3.times { Message.create!(
+    body: "I wanted to let you know bliblablu",
+    conversation_id: 1,
+    user_id: 1
+  )
 }
 
 20.times {

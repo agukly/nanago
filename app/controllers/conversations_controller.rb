@@ -1,9 +1,20 @@
 class ConversationsController < ApplicationController
- before_action :authenticate_user
+
 def index
- @users = User.all
- @conversations = Conversation.all
- end
+  @conversations = policy_scope(Conversation)
+end
+
+def show
+  @conversation = Conversation.find(params[:id])
+  @messages = @conversation.messages
+  authorize @conversation
+  @message = Message.new
+end
+
+def new
+  authorize @conversation
+end
+
 def create
  if Conversation.between(params[:sender_id],params[:recipient_id])
    .present?
@@ -12,6 +23,7 @@ def create
  else
   @conversation = Conversation.create!(conversation_params)
  end
+ authorize @conversation
  redirect_to conversation_messages_path(@conversation)
 end
 private
