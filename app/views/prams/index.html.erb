@@ -1,5 +1,11 @@
 <div class="container">
-  <h2 class="text-primary text-left my-3">Explore</h2>
+  <div class="d-flex justify-content-between">
+    <h2 class="text-primary text-left my-3">Explore</h2>
+    <div class="d-flex align-items-center">
+    <i class="fas fa-plus text-primary p-2"></i>
+    <%= link_to ' Add new pram', new_pram_path, class: "text-primary pr-2" %>
+    </div>
+  </div>
     <div class="row">
         <% @prams.each do |pram| %>
       <div class="col-md-3">
