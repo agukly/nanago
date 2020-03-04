@@ -14,7 +14,7 @@ def randomStrollerData
   year = rand(2014..2020)
   description = ["Works on every terrain", "is for parents with style (and money)", "is functional and stylish", "works for babies of all sizes"].sample
   price = rand(5..50)
-  user_id = rand(1..5)
+  user_id = rand(User.first.id..User.last.id)
 
   return [brand, model, year, description, price, user_id]
 end
@@ -39,15 +39,15 @@ end
 }
 
 1.times { Conversation.create!(
-  sender_id: 1,
-  recipient_id: 2
+  sender_id: User.all.sample.id,
+  recipient_id: User.all.sample.id
 )
 }
 
 3.times { Message.create!(
     body: "I wanted to let you know bliblablu",
-    conversation_id: 1,
-    user_id: 1
+    conversation_id: Conversation.all.sample.id,
+    user_id: User.all.sample.id
   )
 }
 
@@ -68,8 +68,8 @@ end
   start_day: Date.today,
   end_day: randomDate,
   total_price: 60,
-  pram_id: rand(1..10),
-  user_id: rand(1..5)
+  pram_id: rand(Pram.first.id..Pram.last.id),
+  user_id: rand(User.first.id..User.last.id)
   )
 }
 
@@ -77,6 +77,6 @@ end
   Review.create!(
     score: 4,
     comment: randomStrollerData[3],
-    booking_id: 1
+    booking_id: Booking.all.sample.id
   )
 }
