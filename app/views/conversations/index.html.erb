@@ -1,3 +1,21 @@
+
+                                    <h2 class="font-bold mb-6">Chats</h2>
+                                    <!-- Title -->
+
+                                    <!--
+                                    <form class="mb-6">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Search for messages or users..." aria-label="Search for messages or users...">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-lg btn-ico btn-secondary btn-minimal" type="submit">
+                                                    <i class="fe-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                     -->
+
+
 <div class="ui segment">
  <h3>Mailbox</h3>
  <div class="ui list">
@@ -17,7 +35,10 @@
             <%= image_tag "default_avatar.png", class:"message-avatar" %>
           <% end %>
           <div class="message-card-product-infos">
-            <h2><%= link_to recipient.first_name,   conversation_path(conversation), class: "recipient-link"%></h2>
+            <h3><%= link_to recipient.first_name,   conversation_path(conversation), class: "recipient-link"%></h3>
+            <% #message = Message.where("conversation_id = #{conversation.id}").order("created_at DESC")%>
+            <% #message2 = message[0].body %>
+            <%#= message2 %>
           </div>
         </div>
       </div>
@@ -25,8 +46,9 @@
   </div>
 </div>
 
+
 <div class="ui segment">
- <h3>All Users</h3>
+ <h3>Contact your renter</h3>
   <div class="ui list">
     <% array = [] %>
     <% current_user.bookings.each do |booking| %>

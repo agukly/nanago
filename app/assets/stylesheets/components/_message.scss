@@ -5,16 +5,18 @@
 
 .message-card-product {
   overflow: hidden;
-  height: 120px;
-  background: white;
+  height: 60px;
+  background: #F4F4F4;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .message-card-product img {
   height: 100%;
-  width: 120px;
+  width: 60px;
   object-fit: cover;
 }
 
@@ -48,4 +50,27 @@ a:hover {
 
 .recipient-link {
   color: black;
+}
+
+
+.new-message-card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(245,246,250,.85);
+    border-radius: 5px;
+}
+
+.message-segment {
+  margin-bottom: 20px;
+  background-color: #F4F4F4
 }
