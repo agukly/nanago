@@ -2,11 +2,11 @@
 <div class="navbar-size navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="d-flex justify-content-start align-items-center">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "logo.png" %>
+      <%= image_tag "logo-main.png" %> <%= image_tag "logo_writing", class: "nanago" %>
     <% end %>
      <%= simple_form_for :search, url: root_path, method: :get do |f| %>
       <div class="search-form-control">
-        <input class="search-input form-control string required ml-3" type="text" name="search[query]" id="search_query" />
+        <input class="search-input form-control string required" type="text" name="search[query]" id="search_query" />
         <button name="button" type="submit" class="btn btn-ghost">
           <i class="fas fa-search"></i>
         </button>
