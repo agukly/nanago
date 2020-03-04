@@ -14,6 +14,7 @@ class PramsController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
     authorize @pram
   end
 

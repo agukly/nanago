@@ -6,7 +6,16 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @booking = Booking.new(booking_params)
     @booking.user = current_user
+    authorize @booking
+    @pram = Pram.find(params[:pram_id])
+    @booking.pram = @pram
+    if @booking.save
+      redirect_to booking_path(@booking.id)
+    else
+      render 'prams/show'
+    end
   end
 
   def show
@@ -24,5 +33,12 @@ class BookingsController < ApplicationController
     end
      #authorize @review -- no review policy yet
   end
+
+  private
+
+  def booking_params
+    params.require(:booking).permit(:start_day, :end_day)
+  end
+
 
 end
