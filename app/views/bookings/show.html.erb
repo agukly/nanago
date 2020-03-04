@@ -1,17 +1,19 @@
 <div class="container">
-  <h1>My Booking</h1>
-  <div class="row">
+  <div class="row p-3 mt-3">
     <div class="col-sm">
-      <h3><%="#{@booking.pram.brand} / #{@booking.pram.model}"%> </h3>
       <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
       <%=@booking.pram.location %></p>
-      <p class="text-primary">Total price <%=@booking.total_price %>$</p>
+      <h2 class="mb-3"><%="#{@booking.pram.brand} / #{@booking.pram.model}"%> </h2>
+      <p class="text-primary">Total price <%= @booking.total_price %>$</p>
     </div>
     <div class="col-sm">
+      <h6 class="mb-3">Dates</h6>
       <p class="text-primary">From <%=@booking.start_day.strftime("%e %B %Y") %> to <%=@booking.end_day.strftime("%e %B %Y") %></p>
+      <h6 class="mb-3">The pram</h6>
       <p><%=@booking.pram.description%></p>
     </div>
   </div>
+  <hr>
   <div class="row">
     <div class="col-sm">
       <% if @pram.photos.attached? %>
@@ -36,18 +38,21 @@
           </a>
         </div>
         <% else %>
-          <div
+            <div class="main-card-picture" id="default-pram" style="background-image: url('<%= image_path "default-pram.jpg" %>')">
+          </div>
+      <% end %>
+    </div>
+
+      <div
+          class="col-sm"
             id="map"
             style="width: 100%;
             height: 600px;"
             data-markers="<%= @markers.to_json %>"
             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-          ></div>
-      <% end %>
-    </div>
-    <div class="col-sm">
-      <img class= "img-booking w-100" src="https://images.unsplash.com/photo-1562504208-03d85cc8c23e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="">
-    </div>
+          >
+          </div>
+
   </div>
 </div>
 

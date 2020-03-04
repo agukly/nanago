@@ -9,7 +9,11 @@
       <p class="text-muted font-weight-light"><%= @pram.description %></p>
       <p class="text-muted">
         <span class="text-primary h2"><%= @pram.price %> $</span> per day</p>
-
+        <%= simple_form_for [@pram, @booking] do |f| %>
+          <%= f.input :start_day, html5:true %>
+          <%= f.input :end_day, html5:true %>
+          <%= f.button :submit, class: "btn btn-lg btn-block btn-primary" %>
+        <% end %>
     </div>
 
     <div class="col-md-6">
@@ -41,8 +45,4 @@
     </div>
   </div>
 </div>
-<%= simple_form_for [@pram, @booking] do |f| %>
-  <%= f.input :start_day, html5:true %>
-  <%= f.input :end_day, html5:true %>
-  <%= f.button :submit %>
-<% end %>
+
