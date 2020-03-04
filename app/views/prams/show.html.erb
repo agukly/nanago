@@ -45,4 +45,18 @@
     </div>
   </div>
 </div>
+<%#= simple_form_for [@pram, @booking] do |f| %>
+  <%#= f.input :start_day, html5:true %>
+  <%#= f.input :end_day, html5:true %>
+  <%#= f.button :submit %>
+<%# end %>
 
+<div id='pram-booking-dates' data-unavailable="<%= @pram.unavailable_dates.to_json %>">
+    <% if current_user.id != @pram.user_id  %>
+       <%= simple_form_for([@pram, @booking]) do |f| %>
+           <%= f.input :start_day, as: :string, type: :text %>
+           <%= f.input :end_day, as: :string, type: :text %>
+           <%= f.submit "Book", class: "btn btn-primary" %>
+        <% end %>
+    <% end %>
+ </div>

@@ -12,4 +12,10 @@ class Pram < ApplicationRecord
   validates  :brand, presence: true, length: { maximum: 200 }
   validates  :description, presence: true, length: { maximum: 200 }
   validates  :year, presence: true, numericality: { only_integer: true }
+
+  def unavailable_dates
+    bookings.pluck(:start_day, :end_day).map do |range|
+      { from: range[0], to: range[1] }
+    end
+  end
 end

@@ -11,7 +11,10 @@ class BookingsController < ApplicationController
     authorize @booking
     @pram = Pram.find(params[:pram_id])
     @booking.pram = @pram
+    total_price = (@booking.end_day - @booking.start_day).to_i * @booking.pram.price
+    @booking.total_price = total_price
     if @booking.save
+
       redirect_to booking_path(@booking.id)
     else
       render 'prams/show'

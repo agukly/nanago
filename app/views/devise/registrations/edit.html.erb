@@ -10,7 +10,7 @@
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%= f.input :photo, as: :file %>
+    <%= f.input :photo,  as: :file, input_html: { class: 'd-none' }, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo' %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
