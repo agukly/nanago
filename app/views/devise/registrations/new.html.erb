@@ -29,7 +29,7 @@
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "lname" }%>
-      <%= f.input :photo, as: :file %>
+      <%= f.input :photo,  as: :file, input_html: { class: 'd-none' }, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo' %>
       <%= f.input :password,
                   required: true,
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -39,7 +39,7 @@
                   input_html: { autocomplete: "new-password" } %>
     </div>
 
-    <div class="form-actions">
+    <div class="form-actions mb-3">
       <%= f.button :submit, "Sign up", class: "btn btn-lg btn-block btn-primary" %>
     </div>
   <% end %>

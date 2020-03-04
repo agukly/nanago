@@ -7,16 +7,17 @@
                 <%= image_tag "default_avatar.png", class:"avatar-larger" %>
             <% end %>
             <div class="pt-5">
-            <%= link_to "Edit My Profile", edit_user_registration_path, class:"btn btn-primary" %>
+            <%= link_to "Edit Profile", edit_user_registration_path, class:"btn btn-lg btn-block btn-primary" %>
             </div>
         </div>
         <div class="col pt-3">
             <h1 pt-5>Welcome, <%= @user.first_name %></h1>
             <p>A member since <%= @user.created_at.strftime("%B %Y")  %></p>
-            <h2>My Details</h2>
-            <p>Name: <%= @user.first_name %> <%= @user.last_name %></p>
-            <h2>My Prams (Top 5)</h2>
+            <h3>My Details</h3>
+            <p>Name: <strong><%= @user.first_name %> <%= @user.last_name %></strong></p>
+            <h3>My Prams (Top 5)</h3>
             <% @user.prams.first(5).each do |pram| %>
+                <%= link_to pram_path(pram.id), class: 'card-pram' do %>
                 <div class="pt-3">
                 <div class="card-product">
                     <% if pram.photos.attached? %>
@@ -31,9 +32,11 @@
                     </div>
                 </div>
                 </div>
+                <% end %>
             <% end %>
-            <h2 class="pt-5">My Bookings (Last 5)</h2>
+            <h3 class="pt-5">My Bookings (Last 5)</h3>
             <% @user.bookings.first(5).each do |booking| %>
+                <%= link_to booking_path(booking.id), class: 'card-pram' do %>
                 <div class="pt-3">
                 <div class="card-product">
                     <% if booking.pram.photos.attached? %>
@@ -48,6 +51,7 @@
                     </div>
                 </div>
                 </div>
+                <% end %>
             <% end %>
         </div>
    </div>
