@@ -1,27 +1,31 @@
-<% if @over_ten %>
- <%= link_to 'Show Previous', '?m=all' %>
-<% end %>
+<div class="container">
 
-<div class="message-content bg-light">
-  <% @messages.each do |message| %>
-  <div class="ui message-segment">
+  <% if @over_ten %>
+   <%= link_to 'Show Previous', '?m=all' %>
+  <% end %>
 
-  <% if message.body %>
-   <% user = User.find(message.user_id) %>
-    <div class="mb-2"><strong><%= user.first_name %></strong></div>
-    <div>
-      <%= message.body %>
+  <div class="message-content bg-light">
+    <% @messages.each do |message| %>
+    <div class="ui message-segment">
+
+    <% if message.body %>
+     <% user = User.find(message.user_id) %>
+      <div class="mb-2"><strong><%= user.first_name %></strong></div>
+      <div>
+        <%= message.body %>
+      </div>
+      <div class="mt-1">
+        <small class="opacity-65"><%= message.message_time %></small>
+      </div>
+   <% end %>
     </div>
-    <div class="mt-1">
-      <small class="opacity-65"><%= message.message_time %></small>
-    </div>
- <% end %>
+  <% end %>
   </div>
-<% end %>
-</div>
 
-<%= simple_form_for [@conversation, @message] do |f| %>
-  <%= f.input :body, label: "New Message" %>
-  <%= f.hidden_field :user_id, value: @conversation.sender_id, type: "hidden"%>
-  <%= f.submit "Send"%>
-<% end %>
+  <%= simple_form_for [@conversation, @message] do |f| %>
+    <%= f.input :body, label: "New Message" %>
+    <%= f.hidden_field :user_id, value: @conversation.sender_id, type: "hidden"%>
+    <%= f.submit "Send", class: "btn btn-flat"%>
+  <% end %>
+
+</div>

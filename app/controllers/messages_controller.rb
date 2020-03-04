@@ -4,8 +4,9 @@ class MessagesController < ApplicationController
   end
 def new
  @message = @conversation.messages.new
-authorize @message
+  authorize @message
 end
+
 def create
   @message = @conversation.messages.new(message_params)
   @message.user_id = current_user.id
