@@ -2,8 +2,15 @@ class PramsController < ApplicationController
   before_action :set_pram, only: [:show, :destroy]
 
    def index
-    # @prams = Pram.all
-    @prams = policy_scope(Pram)
+    @prams = policy_scope(Pram).select { |pram| pram.latitude != nil && pram.longitude != nil }
+
+    @markers = @prams.map do |pram|
+      {
+        lat: pram.latitude,
+        lng: pram.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { pram: pram })
+      }
+    end
   end
 
   def show
