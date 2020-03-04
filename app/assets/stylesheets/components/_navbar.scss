@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  box-shadow: 0 0 1rem rgba(0,0,0,0.15) !important;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -15,4 +16,8 @@
 .navbar-size {
   padding-top: 0;
   padding-bottom: 0;
+}
+
+.nanago {
+  width: 90px !important;
 }
