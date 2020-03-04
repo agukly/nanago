@@ -33,17 +33,22 @@
                 </div>
             <% end %>
             <h2 class="pt-5">My Bookings (Last 5)</h2>
-            <% @user.bookings.first(5).each do |pram| %>
-                <div class="notification">
-                    <img src='https://kitt.lewagon.com/placeholder/users/arthur-littm' class="avatar-large" />
-                    <div class="notification-content">
-                        <p><small>14th January</small></p>
-                        <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipisicing elit.</p>
+            <% @user.bookings.first(5).each do |booking| %>
+                <div class="pt-3">
+                <div class="card-product">
+                    <% if booking.pram.photos.attached? %>
+                        <%=cl_image_tag booking.pram.photos[0].key %>
+                    <% else %>
+                        <%= image_tag "default-pram.jpg" %>
+                    <% end %>
+                    <div class="card-product-infos">
+                        <h5>You rented <strong><%= booking.pram.brand %> - <%= booking.pram.model %></strong> from <strong><%= booking.pram.user.first_name %></strong></h5>
+                        <h5>From <%= booking.start_day %> to <%= booking.end_day %></h5>
+                        <h5>For <strong> <%= booking.total_price %> Euros</strong></h5>
                     </div>
+                </div>
                 </div>
             <% end %>
         </div>
    </div>
 </div>
-
-
