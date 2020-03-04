@@ -18,6 +18,7 @@ gem 'webpacker'
 gem 'devise'
 gem 'pundit'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git'
+gem 'geocoder'
 
 
 group :development do
