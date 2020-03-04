@@ -18,8 +18,7 @@ def new
 end
 
 def create
- if Conversation.between(params[:sender_id],params[:recipient_id])
-   .present?
+ if Conversation.between(params[:sender_id],params[:recipient_id]).present?
     @conversation = Conversation.between(params[:sender_id],
      params[:recipient_id]).first
  else
@@ -28,7 +27,9 @@ def create
  authorize @conversation
  redirect_to conversation_path(@conversation)
 end
+
 private
+
  def conversation_params
   params.require(:conversation).permit(:sender_id, :recipient_id)
  end
