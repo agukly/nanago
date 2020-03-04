@@ -1,20 +1,66 @@
-<h1>My Conversations</h1>
-<% @conversations.each do |conversation| %>
-<p><%= User.find(conversation.sender_id).first_name %></p>
-<p><%= User.find(conversation.recipient_id).first_name %></p>
-<p><%= conversation.messages.count %></p>
-<% end %>
 
-<h1>New Conversation</h1>
-<p><%=@conversation %></p>
-<p><%=current_user.id%></p>
-<%= simple_form_for @conversation do |f| %>
-  <%= f.hidden_field :sender_id, value: current_user.id, type: "hidden"%>
-  <% array = [] %>
-  <% User.all.each do |user| %>
-  <% array.push(user.first_name) %>
-  <% end %>
-  <%= f.input :recipient_id, :collection => array%>
-  <%= f.submit "Send"%>
-<% end %>
+                                    <h2 class="font-bold mb-6">Chats</h2>
+                                    <!-- Title -->
 
+                                    <!--
+                                    <form class="mb-6">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Search for messages or users..." aria-label="Search for messages or users...">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-lg btn-ico btn-secondary btn-minimal" type="submit">
+                                                    <i class="fe-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                     -->
+
+
+<div class="ui segment">
+ <h3>Mailbox</h3>
+ <div class="ui list">
+    <% @conversations.each do |conversation| %>
+      <% if conversation.sender_id == current_user.id ||      conversation.recipient_id == current_user.id %>
+        <% if conversation.sender_id == current_user.id %>
+          <% recipient = User.find(conversation.recipient_id) %>
+        <% else %>
+          <% recipient = User.find(conversation.sender_id) %>
+        <% end %>
+      <% end %>
+      <div class="message-item">
+        <div class="message-card-product">
+          <% if recipient.photo.attached? %>
+            <%= cl_image_tag recipient.photo.key, class:"message-avatar" %>
+          <% else %>
+            <%= image_tag "default_avatar.png", class:"message-avatar" %>
+          <% end %>
+          <div class="message-card-product-infos">
+            <h3><%= link_to recipient.first_name,   conversation_path(conversation), class: "recipient-link"%></h3>
+            <% #message = Message.where("conversation_id = #{conversation.id}").order("created_at DESC")%>
+            <% #message2 = message[0].body %>
+            <%#= message2 %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="ui segment">
+ <h3>Contact your renter</h3>
+  <div class="ui list">
+    <% array = [] %>
+    <% current_user.bookings.each do |booking| %>
+      <% array.push(booking.pram.user) %>
+    <% end %>
+
+    <% array.uniq.each do |user| %>
+       <div class="item">
+        <%= user.first_name %> <%= link_to conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post" do%>
+          <i class="fas fa-envelope"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
