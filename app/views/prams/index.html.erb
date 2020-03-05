@@ -1,7 +1,7 @@
 <div class="container">
   <div class="d-flex justify-content-between">
     <h2 class="text-primary text-left mt-5 mb-4">Explore</h2>
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center mt-5 mb-4">
     <i class="fas fa-plus text-primary p-2"></i>
     <%= link_to ' Add new pram', new_pram_path, class: "text-primary pr-2" %>
     </div>
@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-6">
         <% @prams.each do |pram| %>
-      <div class="col-md-4">
+      <div class="col-md-4 mx-0" id="card-index-prams">
         <%= link_to pram_path(pram.id), class: 'card-pram' do %>
         <div class="card-pram mb-4 rounded h-100">
           <% if pram.photos.attached? %>

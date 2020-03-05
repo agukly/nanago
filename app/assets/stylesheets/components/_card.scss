@@ -96,7 +96,7 @@ h6 {
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   text-decoration: none;
   color: #333333;
-  border-radius: 25px !important;
+  border-radius: 15px !important;
     h2 {
   font-size: 16px;
   font-weight: bold;
@@ -175,4 +175,9 @@ h6 {
     color: #E67E22;
     font-weight: none;
   }
+}
+
+#card-index-prams {
+  max-width: none;
+  padding: 0px;
 }
