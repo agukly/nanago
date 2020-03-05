@@ -2,7 +2,12 @@ class PramsController < ApplicationController
   before_action :set_pram, only: [:show, :destroy]
 
    def index
-    @prams = policy_scope(Pram).select { |pram| pram.latitude != nil && pram.longitude != nil }
+
+    if params[:query]
+      @prams = policy_scope(Pram).search_by_brand_and_model_and_location(params[:query])
+    else
+      @prams = policy_scope(Pram).select { |pram| pram.latitude != nil && pram.longitude != nil }
+    end
 
     @markers = @prams.map do |pram|
       {
