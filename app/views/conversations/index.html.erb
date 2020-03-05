@@ -1,79 +1,56 @@
-<h2 class="font-bold mb-6 text-primary">Your Chats</h2>
-
-
-                                    <!-- Title -->
-
-                                    <!--
-                                    <form class="mb-6">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control form-control-lg" placeholder="Search for messages or users..." aria-label="Search for messages or users...">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-lg btn-ico btn-secondary btn-minimal" type="submit">
-                                                    <i class="fe-search"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                     -->
-<div class="ui segment">
-  <% if @conversations.present? %>
-
-  <h3>Mailbox</h3>
-    <div class="ui list">
-      <% @conversations.each do |conversation| %>
-        <% if conversation.sender_id == current_user.id ||      conversation.recipient_id == current_user.id %>
-          <% if conversation.sender_id == current_user.id %>
-            <% recipient = User.find(conversation.recipient_id) %>
-          <% else %>
-            <% recipient = User.find(conversation.sender_id) %>
-          <% end %>
-        <% end %>
-
-        <div class="message-item">
-        <div class="message-card-product">
-          <% if recipient.photo.attached? %>
-            <%= cl_image_tag recipient.photo.key, class:"message-avatar" %>
-          <% else %>
-            <%= image_tag "default_avatar.png", class:"message-avatar" %>
-          <% end %>
-          <div class="message-card-product-infos">
-            <h5><%= link_to recipient.first_name,   conversation_path(conversation), class: "recipient-link"%></h5>
+<div class="container">
+    <div>
+      <% if current_user.bookings.present? %>
+        <div class="ui segment d-flex align-items-center">
+          <h3 class="text-primary text-center mt-3 mr-5">Available to chat</h3>
+          <div class="ui list d-flex align-items-center mt-3">
+            <% array = [] %>
+            <% current_user.bookings.each do |booking| %>
+            <% array.push(booking.pram.user) %>
+            <% end %>
+            <% array.uniq.each do |user| %>
+            <% if user !=  current_user%>
+            <div class="item m-3">
+              <%= link_to conversations_path(conversation: {sender_id: current_user.id, recipient_id: user.id}), method: "post" do %>
+                <% if user.photo.attached? %>
+                  <%= cl_image_tag user.photo.key, class: "avatar" %>
+                <% else %>
+                  <%= image_tag "default_avatar.png", class: "avatar" %>
+                <% end %>
+                <% end %>
+            </div>
+            <% end %>
+            <% end %>
           </div>
         </div>
+      <% else %>
+        <p>Currently none to contact ....</p>
+      <% end %>
+    </div>
+    <hr class="mt-0">
+<div class="row">
+  <div class="users-list col-3">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <% @conversations.each_with_index do |conversation, index| %>
+           <a class="nav-link <%= 'active' if index.zero? %>" id="n-<%= conversation.id %>-conversation-tab" data-toggle="pill" href="#n-<%= conversation.id %>-conversation" role="tab" aria-controls="<%= conversation.id %>-conversation" aria-selected="false">
+            <% if current_user.photo.attached? %>
+              <%= current_user.messaging_with(conversation).photo.key class: "avatar-small mr-2" %>
+            <% else %>
+              <%= image_tag "default_avatar.png", class: "avatar-small mr-2" %>
+            <% end %>
+            <span> <%= current_user.messaging_with(conversation).first_name%> </span></a>
+        <% end %>
+      </div>
+  </div>
+
+  <div class="col-9">
+    <div class="tab-content" id="v-pills-tabContent">
+      <% @conversations.each_with_index do |conversation, index| %>
+        <div class="tab-pane fade <%= 'show active' if index.zero? %>" id="n-<%= conversation.id %>-conversation" role="tabpanel" aria-labelledby="<%= conversation.id %>-conversation-tab">
+            <%= render 'show', messages: conversation.messages, conversation: conversation, message: Message.new%>
         </div>
       <% end %>
     </div>
-  <% else %>
-    <p>Waiting for first conversation ...</p>
-  <% end %>
-</div>
-
-
-<% if current_user.bookings.present? %>
-
-<div class="ui segment">
-  <h3>Contact your renter</h3>
-  <div class="ui list">
-    <% array = [] %>
-    <% current_user.bookings.each do |booking| %>
-      <% array.push(booking.pram.user) %>
-    <% end %>
-
-    <% array.uniq.each do |user| %>
-
-      <% if user !=  current_user%>
-
-      <div class="item">
-        <%= user.first_name %> <%= link_to conversations_path(conversation: {sender_id: current_user.id, recipient_id: user.id}), method: "post" do %>
-        <i class="fas fa-envelope"></i>
-        <% end %>
-      </div>
-
-      <% end %>
-
-    <% end %>
   </div>
 </div>
-<% else %>
-  <p>Currently none to contact ....</p>
-<% end %>
+</div>
