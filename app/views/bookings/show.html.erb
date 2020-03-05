@@ -3,17 +3,16 @@
     <div class="col-sm">
       <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
       <%=@booking.pram.location %></p>
-      <h2 class="mb-3"><%="#{@booking.pram.brand} / #{@booking.pram.model}"%> </h2>
-      <p class="text-primary">Total price <%= @booking.total_price %>$</p>
+      <h2 class="text-left mb-0 font-weight-bold" style="font-size:2vw;"><%="#{@booking.pram.brand} / #{@booking.pram.model}"%> </h2>
+
     </div>
-    <div class="col-sm">
+    <div class="col-sm text-right">
       <h6 class="mb-3">Dates</h6>
       <p class="text-primary">From <%=@booking.start_day.strftime("%e %B %Y") %> to <%=@booking.end_day.strftime("%e %B %Y") %></p>
-      <h6 class="mb-3">The pram</h6>
-      <p><%=@booking.pram.description%></p>
+      <p class="text-primary font-weight-bold mt-5 mb-0">Total price <%= @booking.total_price %>$</p>
     </div>
   </div>
-  <hr>
+  <hr class="mt-0 mb-4">
   <div class="row">
     <div class="col-sm">
       <% if @pram.photos.attached? %>
@@ -44,10 +43,10 @@
     </div>
 
       <div
-          class="col-sm"
+          class="col-sm p-0"
             id="map"
             style="width: 100%;
-            height: 600px;"
+            height: 450px;"
             data-markers="<%= @markers.to_json %>"
             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
           >
@@ -68,3 +67,4 @@
   </div>
 <% end %>
 </div>
+

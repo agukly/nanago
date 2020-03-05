@@ -15,10 +15,13 @@ h6 {
   height: 200px;
   background-position: center;
   background-size: cover;
+  border-radius: 15px;
 }
 
 #default-pram {
   height: 450px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 15px;
 }
 
 .card-trip-booking {

@@ -2,6 +2,7 @@
   <div class="row py-5">
     <div class="col-md-6 text-block">
       <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
+        <%= @pram.location %></p>
       <h1> <%= @pram.brand %> <%= @pram.model %> </h1>
         <div class="card-rating-show">
           <% if @pram.reviews.present?%>
@@ -25,6 +26,35 @@
 
           <% end %>
         </div>
+
+        <div class="owner-row">
+          <div class="owner-row-left">
+          <% if @pram.user == current_user %>
+            <% if @pram.user.photo.attached? %>
+              <%= cl_image_tag recipient.photo.key, class:"avatar-small" %>
+            <% else %>
+              <%= image_tag "default_avatar.png", class:"avatar-small" %>
+            <% end %>
+            <p class="text-muted font-weight-light">You</p>
+          <% else %>
+            <% if @pram.user.photo.attached? %>
+              <%= cl_image_tag recipient.photo.key, class:"avatar-small" %>
+            <% else %>
+              <%= image_tag "default_avatar.png", class:"avatar-small" %>
+            <% end %>
+            <p class="text-muted font-weight-ligh"><%= @pram.user.first_name%> <%= @pram.user.last_name%></p>
+          <% end %>
+        </div>
+
+        <div class="owner-row-right">
+          <% if current_user == @pram.user %>
+            <%=link_to pram_path(@pram), method: :delete, data: { confirm: "Are you sure?" } do %>
+              <i class="fas fa-trash-alt"></i>
+            <%end%>
+          <%end %>
+        </div>
+
+        </div>
       <hr>
       <h6 class="mb-3">The pram</h6>
       <p class="text-muted font-weight-light"><%= @pram.description %></p>
@@ -35,7 +65,7 @@
                <%= simple_form_for([@pram, @booking]) do |f| %>
                    <%= f.input :start_day, as: :string, type: :text %>
                    <%= f.input :end_day, as: :string, type: :text %>
-                   <%= f.submit "Book", class: "btn btn-lg btn-block btn-primary" %>
+                   <%= f.submit "Book", class: "btn btn-flat", html: {id: :check_submit} %>
                 <% end %>
             <% end %>
          </div>
@@ -71,3 +101,4 @@
     </div>
   </div>
 </div>
+<%= render 'shared/footer' %>
