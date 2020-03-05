@@ -37,7 +37,7 @@ class BookingsController < ApplicationController
       {
         lat: pram.latitude,
         lng: pram.longitude,
-        #infoWindow: render_to_string(partial: "info_window", locals: { pram: pram })
+        infoWindow: render_to_string(partial: "info_window", locals: { pram: pram })
       }
     end
      #authorize @review -- no review policy yet

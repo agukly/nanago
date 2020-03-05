@@ -8,6 +8,7 @@ class Pram < ApplicationRecord
   has_many :reviews, through: :bookings
   has_many_attached :photos
 
+  validates_presence_of :price, message: 'Please put in a rounded price.'
   validates  :price, presence: true, numericality: { only_integer: true }
   validates  :model, presence: true, length: { maximum: 200 }
   validates  :location, presence: true, length: { maximum: 200 }
