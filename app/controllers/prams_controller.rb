@@ -42,7 +42,7 @@ class PramsController < ApplicationController
   def destroy
     authorize @pram
     @pram.destroy
-    redirect_to pram_url, notice: 'Pram was successfully deleted.'
+    redirect_to prams_path, notice: 'Pram was successfully deleted.'
   end
 
   private
