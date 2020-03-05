@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
     @booking.pram = @pram
 
     if @booking.end_day && @booking.start_day
-      total_price = (@booking.end_day - @booking.start_day).to_i * @booking.pram.price
+      total_price = (((@booking.end_day - @booking.start_day).to_i) +1) * @booking.pram.price
       @booking.total_price = total_price
     else
       @booking.total_price = 0
