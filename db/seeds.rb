@@ -75,6 +75,16 @@ end
 }
 
 10.times {
+  Booking.create!(
+  start_day: Date.today-1.day,
+  end_day: Date.today-5.day,
+  total_price: 60,
+  pram_id: rand(Pram.first.id..Pram.last.id),
+  user_id: rand(User.first.id..User.last.id)
+  )
+}
+
+10.times {
   Review.create!(
     score: 4,
     comment: randomStrollerData[3],

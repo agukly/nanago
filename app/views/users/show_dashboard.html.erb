@@ -55,30 +55,87 @@
                 </div>
                 <% end %>
             <% end %>
-            <h4 style="color: #8C56A2" class="pt-4">My Bookings (Last 5)</h4>
-            <% @user.bookings.first(5).each do |booking| %>
-                <%= link_to booking_path(booking.id), class: 'card-pram' do %>
-                <div class="pt-3">
-                <div class="card-product">
-                    <% if booking.pram.photos.attached? %>
-                        <%=cl_image_tag booking.pram.photos[0].key %>
-                    <% else %>
-                        <%= image_tag "default-pram.jpg" %>
+            <h4 style="color: #8C56A2" class="pt-4">My bookings</h4>
+            
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Upcoming</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Past</a>
+            </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <% @user.bookings.first(5).each do |booking| %>
+                        <% if Date.today < booking.end_day %>
+                            <%= link_to booking_path(booking.id), class: 'card-pram' do %>
+                                <div class="pt-3">
+                                    <div class="card-product">
+                                        <% if booking.pram.photos.attached? %>
+                                            <%=cl_image_tag booking.pram.photos[0].key %>
+                                        <% else %>
+                                            <%= image_tag "default-pram.jpg" %>
+                                        <% end %>
+                                        <div class="card-product-infos">     
+                                            <div>
+                                                <h6><%=booking.pram.brand %> <%=booking.pram.model%></h6>
+                                                <p><%=booking.start_day.strftime("%e %B %Y") %> - <%=booking.end_day.strftime("%e %B %Y") %></p>
+                                                <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
+                                                <%= booking.pram.location %></p>
+                                            </div>
+                                            <h5><strong><%= booking.total_price %> $</strong></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% end %>
+                        <% end %>
                     <% end %>
-                    <div class="card-product-infos">
-                        <div>
-                            <h6><%=booking.pram.brand %> <%=booking.pram.model%></h6>
-                            <p><%=booking.start_day.strftime("%e %B %Y") %> - <%=booking.end_day.strftime("%e %B %Y") %></p>
-                            <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
-                            <%= booking.pram.location %></p>
-                        </div>
-                        <h5><strong><%= booking.total_price %> $</strong></h5>
-                        </div>
-                    </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <% @user.bookings.first(5).each do |booking| %>
+                        <% if Date.today > booking.end_day %>
+                            <%= link_to booking_path(booking.id), class: 'card-pram' do %>
+                                <div class="pt-3">
+                                    <div class="card-product">
+                                        <% if booking.pram.photos.attached? %>
+                                            <%=cl_image_tag booking.pram.photos[0].key %>
+                                        <% else %>
+                                            <%= image_tag "default-pram.jpg" %>
+                                        <% end %>
+                                        <div class="card-product-infos">     
+                                            <div>
+                                                <div class="d-flex flex-row">
+                                                    <div>
+                                                        <h6><%=booking.pram.brand %> <%=booking.pram.model%></h6>
+                                                    </div>
+                                                    <div>
+                                                    <% if booking.review.present? %>
+                                                        <% score = booking.review.score.to_i %>
+                                                        <% score.times do %>
+                                                            <i class="fas fa-star"></i>
+                                                        <% end %>
+                                                        <% (5 - score).times do %>
+                                                            <i class="far fa-star"></i>
+                                                        <% end %>
+                                                    <% else %>
+                                                        <%= link_to booking_path(booking.id), class: 'badge badge-primary' do %>Please review<% end %>
+                                                    <% end %>
+                                                    </div>
+                                                </div>
+                                                <p><%=booking.start_day.strftime("%e %B %Y") %> - <%=booking.end_day.strftime("%e %B %Y") %></p>
+                                                <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
+                                                <%= booking.pram.location %></p>
+                                            </div>
+                                            <h5><strong><%= booking.total_price %> $</strong></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    <% end %>
                 </div>
-                </div>
-                <% end %>
-            <% end %>
+            </div>
         </div>
    </div>
 </div>
