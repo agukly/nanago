@@ -5,6 +5,7 @@ class Pram < ApplicationRecord
 
   belongs_to :user
   has_many :bookings
+  has_many :reviews, through: :bookings
   has_many_attached :photos
 
   validates_presence_of :price, message: 'Please put in a rounded price.'

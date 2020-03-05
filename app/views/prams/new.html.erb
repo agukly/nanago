@@ -1,13 +1,12 @@
-
 <div class="container-fluid px-3 w-100">
   <div class="row min-vh-100 d-flex">
     <div class="col-md-8 col-lg-6 col-xl-5 d-flex align-items-center">
     <div class="w-100 py-5 px-md-5 p-xl-6 position-relative">
       <div class="mb-5">
         <%= image_tag "logo-main.png", class: "box-logo img-fluid mb-3" %>
-        <h2 class="form-title">Create</h2>
+        <h2 class="form-title">Register a new pram</h2>
         <div class="close-absolute mr-md-5 mr-xl-6 pt-5">
-          <%= link_to prams_path do %>
+          <%= link_to :back do %>
           <i class="fas fa-times"></i>
           <% end %>
         </div>
@@ -28,6 +27,7 @@
     </div>
   </div>
   <div class="col-md-4 col-lg-6 col-xl-7 d-none d-md-block">
-    <div style="background-image: url('https://images.unsplash.com/photo-1507041957456-9c397ce39c97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80');" class="side-pic bg-cover vh-100 mr-n3"></div>
+    <div style="background-image: url('<%= image_path("pram_signup.jpg") %>');" class="side-pic bg-cover vh-100 mr-n3"></div>
   </div>
 </div>
+

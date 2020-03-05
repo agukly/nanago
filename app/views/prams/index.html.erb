@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-6">
         <% @prams.each do |pram| %>
-      <div class="col-md-6 mb-4">
+      <div class="col-md-4">
         <%= link_to pram_path(pram.id), class: 'card-pram' do %>
         <div class="card-pram mb-4 rounded h-100">
           <% if pram.photos.attached? %>
@@ -21,11 +21,44 @@
           <% end %>
             <div class="card-pram-infos">
               <div>
-                <h6><%= pram.brand %> <%= pram.model %></h6>
+                <% if (pram.brand.length + pram.model.length) < 28 %>
+                  <h6><%= pram.brand %> <%= pram.model%></h6>
+                <% else %>
+                    <% model_char = 28 - pram.brand.length %>
+                    <h6><%= pram.brand%><%= pram.model[0, model_char]%></h6>
+                <% end %>
                 <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
-                <%= pram.location %></p>
+                <%= pram.location[0, 34] %></p>
               </div>
-              <h2 class="card-pram-pricing"><%= pram.price %>$</h2>
+
+
+              <div class="card-right-side">
+                <div class="card-rating">
+                  <% if pram.reviews.present?%>
+
+                    <% avg_score = pram.reviews.average(:score).to_i %>
+                    <% avg_score_float = pram.reviews.average(:score).to_f.round(2) %>
+
+                    <div class="text-warning">
+                      <% avg_score.times do %>
+                        <i class="fas fa-star"></i>
+                      <% end %>
+                      <% (5 - avg_score).times do %>
+                        <i class="far fa-star"></i>
+                      <% end %>
+                    </div>
+                    <h6>(<%= avg_score_float%>)</h6>
+
+                  <% else %>
+
+                    <p id="no-reviews">No reviews yet</p>
+
+                  <% end %>
+                </div>
+                <h2 class="card-pram-pricing"><%= pram.price %>$</h2>
+
+              </div>
+
             </div>
           </div>
       </div>
