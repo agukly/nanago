@@ -1,21 +1,26 @@
 <div class="container pt-5">
     <div class="row">
-        <div class="col-3 d-flex flex-column align-items-center border bg-light pt-3">
+        <div class="col-4 d-flex flex-column align-items-center pt-3">
+            <div class="pb-2">
             <% if @user.photo.attached? %>
                 <%= cl_image_tag @current_user.photo.key, class:"avatar-larger" %>
             <% else %>
                 <%= image_tag "default_avatar.png", class:"avatar-larger" %>
             <% end %>
-            <div class="pt-5">
-            <%= link_to "Edit Profile", edit_user_registration_path, class:"btn btn-lg btn-block btn-primary" %>
+            </div>
+            <p><strong><%= current_user.first_name %> <%= current_user.last_name %></strong></p>
+            <div class="pt-2">
+            <%= link_to "Edit Profile", edit_user_registration_path, class:"btn btn-sm btn-primary" %>
             </div>
         </div>
         <div class="col pt-3">
             <h1 pt-5>Welcome, <%= @user.first_name %></h1>
             <p>A member since <%= @user.created_at.strftime("%B %Y")  %></p>
-            <h3>My Details</h3>
-            <p>Name: <strong><%= @user.first_name %> <%= @user.last_name %></strong></p>
-            <h3>My Prams (Top 5)</h3>
+            <h4 style="color: #8C56A2">My Prams (Top 5)</h3>
+            <div class="d-flex align-items-center">
+                <i class="fas fa-plus text-primary p-2"></i>
+                <%= link_to ' Add new pram', new_pram_path, class: "text-primary pr-2" %>
+            </div>
             <% @user.prams.first(5).each do |pram| %>
                 <%= link_to pram_path(pram.id), class: 'card-pram' do %>
                 <div class="pt-3">
@@ -34,7 +39,7 @@
                 </div>
                 <% end %>
             <% end %>
-            <h3 class="pt-5">My Bookings (Last 5)</h3>
+            <h4 style="color: #8C56A2" class="pt-4">My Bookings (Last 5)</h4>
             <% @user.bookings.first(5).each do |booking| %>
                 <%= link_to booking_path(booking.id), class: 'card-pram' do %>
                 <div class="pt-3">
@@ -45,9 +50,10 @@
                         <%= image_tag "default-pram.jpg" %>
                     <% end %>
                     <div class="card-product-infos">
-                        <h5>You rented <strong><%= booking.pram.brand %> - <%= booking.pram.model %></strong> from <strong><%= booking.pram.user.first_name %></strong></h5>
-                        <h5>From <%= booking.start_day %> to <%= booking.end_day %></h5>
-                        <h5>For <strong> <%= booking.total_price %> Euros</strong></h5>
+                        <h2><strong>Model:</strong> <%= booking.pram.brand %> - <%= booking.pram.model %></h2>
+                        <h2><strong>Owner:</strong> <%= booking.pram.user.first_name %></h2>
+                        <h2><strong>Dates:</strong> <%= booking.start_day.strftime("%d.%m.%Y") %> to <%= booking.end_day.strftime("%d.%m.%Y") %></h2>
+                        <h2><strong>Total:</strong> <%= booking.total_price %> €</h2>
                     </div>
                 </div>
                 </div>
