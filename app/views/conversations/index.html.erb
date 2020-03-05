@@ -1,5 +1,6 @@
+<h2 class="font-bold mb-6 text-primary">Your Chats</h2>
 
-                                    <h2 class="font-bold mb-6">Chats</h2>
+
                                     <!-- Title -->
 
                                     <!--
@@ -14,20 +15,21 @@
                                         </div>
                                     </form>
                                      -->
-
-
 <div class="ui segment">
- <h3>Mailbox</h3>
- <div class="ui list">
-    <% @conversations.each do |conversation| %>
-      <% if conversation.sender_id == current_user.id ||      conversation.recipient_id == current_user.id %>
-        <% if conversation.sender_id == current_user.id %>
-          <% recipient = User.find(conversation.recipient_id) %>
-        <% else %>
-          <% recipient = User.find(conversation.sender_id) %>
+  <% if @conversations.present? %>
+
+  <h3>Mailbox</h3>
+    <div class="ui list">
+      <% @conversations.each do |conversation| %>
+        <% if conversation.sender_id == current_user.id ||      conversation.recipient_id == current_user.id %>
+          <% if conversation.sender_id == current_user.id %>
+            <% recipient = User.find(conversation.recipient_id) %>
+          <% else %>
+            <% recipient = User.find(conversation.sender_id) %>
+          <% end %>
         <% end %>
-      <% end %>
-      <div class="message-item">
+
+        <div class="message-item">
         <div class="message-card-product">
           <% if recipient.photo.attached? %>
             <%= cl_image_tag recipient.photo.key, class:"message-avatar" %>
@@ -36,18 +38,21 @@
           <% end %>
           <div class="message-card-product-infos">
             <h5><%= link_to recipient.first_name,   conversation_path(conversation), class: "recipient-link"%></h5>
-            <% #message = Message.where("conversation_id = #{conversation.id}").order("created_at DESC")%>
-            <% #message2 = message[0].body %>
-            <%#= message2 %>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>Waiting for first conversation ...</p>
+  <% end %>
 </div>
 
+
+<% if current_user.bookings.present? %>
+
 <div class="ui segment">
- <h3>Contact your renter</h3>
+  <h3>Contact your renter</h3>
   <div class="ui list">
     <% array = [] %>
     <% current_user.bookings.each do |booking| %>
@@ -55,11 +60,20 @@
     <% end %>
 
     <% array.uniq.each do |user| %>
-       <div class="item">
+
+      <% if user !=  current_user%>
+
+      <div class="item">
         <%= user.first_name %> <%= link_to conversations_path(conversation: {sender_id: current_user.id, recipient_id: user.id}), method: "post" do %>
-          <i class="fas fa-envelope"></i>
+        <i class="fas fa-envelope"></i>
         <% end %>
       </div>
+
+      <% end %>
+
     <% end %>
   </div>
 </div>
+<% else %>
+  <p>Currently none to contact ....</p>
+<% end %>
