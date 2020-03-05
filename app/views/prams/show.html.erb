@@ -3,18 +3,27 @@
     <div class="col-md-6 text-block">
       <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
       <h1> <%= @pram.brand %> <%= @pram.model %> </h1>
-      <% avg_score = @pram.reviews.average(:score).to_i %>
-      <% avg_score_float = pram.reviews.average(:score).to_f.round(2) %>
+        <div class="card-rating-show">
+          <% if @pram.reviews.present?%>
 
-        <div class="text-warning">
-          <% avg_score.times do %>
-            <i class="fas fa-star"></i>
-          <% end %>
-          <% (5 - avg_score).times do %>
-            <i class="far fa-star"></i>
-          <% end %>
-        <p>(<%= avg_score_float%>)</p>
+          <% avg_score = @pram.reviews.average(:score).to_i %>
+          <% avg_score_float = @pram.reviews.average(:score).to_f.round(2) %>
 
+            <div class="text-warning">
+              <% avg_score.times do %>
+                <i class="fas fa-star"></i>
+              <% end %>
+                <% (5 - avg_score).times do %>
+                  <i class="far fa-star"></i>
+                <% end %>
+            </div>
+              <h6 id="rating-float">(<%= avg_score_float%>)</h6>
+
+          <% else %>
+
+            <p id="no-reviews">No reviews yet</p>
+
+          <% end %>
         </div>
       <hr>
       <h6 class="mb-3">The pram</h6>
