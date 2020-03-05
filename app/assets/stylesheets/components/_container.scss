@@ -1,3 +1,20 @@
 .page-height-container{
   min-height: calc(100vh - 170px);
 }
+
+.owner-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.owner-row-left {
+  display: flex;
+  flex-direction: row;
+}
+
+.owner-row-right {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: -15px;
+}
