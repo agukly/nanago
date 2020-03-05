@@ -1,6 +1,5 @@
 .btn-ghost {
   color: #4A4A4A;
-  border: 0px solid #4A4A4A;
   padding: 8px 24px;
   border-radius: 50px;
   font-weight: lighter;
@@ -12,17 +11,22 @@
   opacity: 1;
 }
 
+.btn-ghost:focus {
+  box-shadow: none;
+}
+
 .btn-flat {
   color: white;
   padding: 8px 24px;
-  border-radius: 4px;
+  border-radius: 15px;
   background: #8C56A2;
   transition: background 0.3s ease;
 }
 
 .btn-flat:hover {
-  background: #1BCB7F;
+  background: #B3EBF9;
   color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .btn-gradient {

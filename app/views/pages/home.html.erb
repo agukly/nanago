@@ -7,12 +7,12 @@
 </div>
 
 <div class="container">
-  <h2 class="text-primary text-left my-3">Top 5 Prams for today</h2>
-    <div class="row">
-      <% @prams.sample(5).each do |pram| %>
-       <div class="col-md-3">
+  <h2 class="text-primary text-left my-3 mt-5 mb-4">Top Prams for Today</h2>
+    <div class="row mb-5">
+      <% @prams.sample(8).each do |pram| %>
+       <div class="col-md-3 mb-4">
         <%= link_to pram_path(pram.id), class: 'card-pram' do %>
-          <div class="card-pram mb-4 rounded">
+          <div class="card-pram rounded h-100">
             <% if pram.photos.attached? %>
              <div class="main-card-picture" style="background-image: url('<%=cl_image_path pram.photos[0].key %>')">
             </div>
