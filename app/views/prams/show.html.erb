@@ -2,6 +2,7 @@
   <div class="row py-5">
     <div class="col-md-6 text-block">
       <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
+        <%= @pram.location %></p>
       <h1> <%= @pram.brand %> <%= @pram.model %> </h1>
         <div class="card-rating-show">
           <% if @pram.reviews.present?%>
