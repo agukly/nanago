@@ -32,7 +32,8 @@
                     <% end %>
                     <div class="card-product-infos">
                         <h2><%= pram.brand %> <%= pram.model %></h2>
-                        <p><%= pram.location %></p>
+                        <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
+                        <%= pram.location %></p>
                         <h5><strong><%= pram.price %> $</strong></h5>
                     </div>
                 </div>
@@ -49,11 +50,15 @@
                     <% else %>
                         <%= image_tag "default-pram.jpg" %>
                     <% end %>
-                    <div class="card-product-infos">
-                        <h2><strong>Model:</strong> <%= booking.pram.brand %> - <%= booking.pram.model %></h2>
-                        <h2><strong>Owner:</strong> <%= booking.pram.user.first_name %></h2>
-                        <h2><strong>Dates:</strong> <%= booking.start_day.strftime("%d.%m.%Y") %> to <%= booking.end_day.strftime("%d.%m.%Y") %></h2>
-                        <h2><strong>Total:</strong> <%= booking.total_price %> €</h2>
+                    <div class="card-product-infos">     
+                        <div>
+                            <h6><%=booking.pram.brand %> <%=booking.pram.model%></h6>
+                            <p><%=booking.start_day.strftime("%e %B %Y") %> - <%=booking.end_day.strftime("%e %B %Y") %></p>
+                            <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
+                            <%= booking.pram.location %></p>
+                        </div>
+                        <h5><strong><%= booking.total_price %> $</strong></h5>
+                        </div>
                     </div>
                 </div>
                 </div>
