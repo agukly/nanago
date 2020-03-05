@@ -9,17 +9,19 @@
 <div class="container">
   <h2 class="text-primary text-left my-3">Top 5 Prams for today</h2>
     <div class="row">
-      <% @prams.first(5).each do |pram| %>
+      <% @prams.sample(5).each do |pram| %>
        <div class="col-md-3">
         <%= link_to pram_path(pram.id), class: 'card-pram' do %>
           <div class="card-pram mb-4 rounded">
             <% if pram.photos.attached? %>
-              <%=cl_image_tag pram.photos[0].key %>
+             <div class="main-card-picture" style="background-image: url('<%=cl_image_path pram.photos[0].key %>')">
+            </div>
             <% else %>
-                <%= image_tag "default-pram.jpg" %>
+              <div class="main-card-picture" style="background-image: url('<%= image_path "default-pram.jpg" %>')">
+              </div>
             <% end %>
-          <div class="card-pram-infos">
-            <div>
+              <div class="card-pram-infos">
+              <div>
                 <h6><%= pram.brand %> <%= pram.model %></h6>
                 <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
                 <%= pram.location %></p>
