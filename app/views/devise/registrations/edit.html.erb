@@ -1,4 +1,18 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container-fluid px-3 w-100">
+  <div class="row min-vh-100 d-flex">
+    <div class="col-md-8 col-lg-6 col-xl-5 d-flex align-items-center">
+    <div class="w-100 py-5 px-md-5 p-xl-6 position-relative">
+      <div class="mb-5">
+        <%= image_tag "logo-main.png", class: "box-logo img-fluid mb-3" %>
+        <h2 class="form-title">Edit profile</h2>
+        <div class="close-absolute mr-md-5 mr-xl-6 pt-5">
+          <%= link_to prams_path do %>
+          <i class="fas fa-times"></i>
+          <% end %>
+        </div>
+      </div>
+       <hr>
+      <div class="form-validate">
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
@@ -25,12 +39,23 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+    <%= f.button :submit, "Update", class: "btn btn-lg btn-block btn-primary" %>
   </div>
 <% end %>
 
+
+<div class="pt-5">
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+</div>
+
+        </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-lg-6 col-xl-7 d-none d-md-block">
+    <div style="background-image: url('<%= image_path("pram_signup.jpg") %>');" class="side-pic bg-cover vh-100 mr-n3"></div>
+  </div>
+</div>
