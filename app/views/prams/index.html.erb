@@ -21,6 +21,28 @@
             <div class="card-pram-infos">
               <div>
                 <h6><%= pram.brand %> <%= pram.model %></h6>
+
+                <% if pram.reviews.present?%>
+
+                  <% avg_score = pram.reviews.average(:score).to_i %>
+                  <% avg_score_float = pram.reviews.average(:score).to_f.round(2) %>
+
+                  <div class="text-warning">
+                    <% avg_score.times do %>
+                      <i class="fas fa-star"></i>
+                    <% end %>
+                    <% (5 - avg_score).times do %>
+                      <i class="far fa-star"></i>
+                    <% end %>
+                    <p>(<%= avg_score_float%>)</p>
+                  </div>
+
+                <% else %>
+
+                  <p class="pb-2">No reviews yet</p>
+
+                <% end %>
+
                 <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
                 <%= pram.location %></p>
               </div>
