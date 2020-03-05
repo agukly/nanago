@@ -35,6 +35,21 @@
                         <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
                         <%= pram.location %></p>
                         <h5><strong><%= pram.price %> $</strong></h5>
+                        <% if pram.reviews.present?%>
+                            <% avg_score = pram.reviews.average(:score).to_i %>
+                            <% avg_score_float = pram.reviews.average(:score).to_f.round(2) %>
+                            <div class="text-warning">
+                            <% avg_score.times do %>
+                                <i class="fas fa-star"></i>
+                            <% end %>
+                            <% (5 - avg_score).times do %>
+                                <i class="far fa-star"></i>
+                            <% end %>
+                            </div>
+                            <h6>(<%= avg_score_float%>)</h6>
+                        <% else %>
+                            <p class>No reviews yet</p>
+                        <% end %>
                     </div>
                 </div>
                 </div>
