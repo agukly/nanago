@@ -7,5 +7,5 @@
 <%= simple_form_for [booking, review] do |f| %>
   <%= f.input :comment %>
   <%= f.input :score %>
-  <%= f.submit %>
+  <%= f.submit "Add Review", class: "btn btn-flat" %>
 <% end %>
