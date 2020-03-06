@@ -3,9 +3,9 @@
   <h2 class="text-primary text-left my-3">Your bookings</h2>
     <div class="row">
         <% @bookings.each do |booking| %>
-      <div class="col-md-3">
+      <div class="col-md-3 mb-4">
         <%= link_to booking_path(booking.id), class: 'card-pram' do %>
-        <div class="card-pram mb-4 rounded">
+        <div class="card-pram mb-4 rounded h-100">
           <% if @pram.photos.attached? %>
             <div class="main-card-picture" style="background-image: url('<%=cl_image_path pram.photos[0].key %>')">
             </div>
@@ -27,5 +27,6 @@
       <% end %>
         <% end %>
     </div>
+    <p id="see-all" class="p-0 mt-4"> <%= link_to "Go back", dashboard_path, class: "text-primary" %></p>
 </div>
 

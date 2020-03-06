@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row py-5">
     <div class="col-md-6 text-block">
-      <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
+      <p class="text-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
         <%= @pram.location %></p>
       <h1> <%= @pram.brand %> <%= @pram.model %> </h1>
         <div class="card-rating-show">
@@ -69,8 +69,9 @@
                 <% end %>
             <% end %>
          </div>
-
+         <p id="see-all" class="p-0 mt-4"> <%= link_to "See all prams", prams_path, class: "text-primary" %></p>
     </div>
+
 
     <div class="col-md-6">
       <% if @pram.photos.attached? %>
@@ -99,7 +100,34 @@
           </div>
       <% end %>
     </div>
+
   </div>
 </div>
+<div class="fixed-bottom m-0 p-0">
 <%= render 'shared/footer' %>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">
+        <h5 class="text-primary" id="exampleModalLabel"><%= @pram.brand %> <%= @pram.model %></h5>
+        <p class="text-primary mb-1"><%= @pram.location %></p>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="map"
+          style="width: 100%;
+          height: 600px;"
+          data-markers="<%= @markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+      <div class="modal-footer">
+        <p id="see-all" class="p-0"> <%= link_to "Close", pram_path, class: "text-primary" %></p>
+      </div>
+
+    </div>
+  </div>
+</div>
