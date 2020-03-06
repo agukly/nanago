@@ -1,0 +1,63 @@
+
+addMessage();
+
+
+function fetchAllMessages() {
+
+const conversationId = "<%= @conversation.id %>"
+const messageSegmentLoc = document.getElementById(`message-segment${conversationId}`);
+const messageBodyLoc = document.getElementById(`message_body${conversationId}`);
+
+messages = <%= raw @conversation.messages.map { |m| {user_id: m.user_id, cont: m.body} }.to_json  %>
+
+messages.forEach(element => {
+  console.log(element.user_id);
+});
+}
+
+function addMessage() {
+    const conversationId = "<%= @conversation.id %>"
+    const messageSegmentLoc = document.getElementById(`message-segment${conversationId}`);
+    const messageBodyLoc = document.getElementById(`message_body${conversationId}`);
+    const messageHTML = `<div class="mine messages"> 
+                            <span class="mine message"> 
+                                ${messageBodyLoc.value}
+                            </span>
+                        </div>`
+    messageSegmentLoc.insertAdjacentHTML('beforeend', messageHTML);
+    messageBodyLoc.value = "";
+}
+
+function fetchMessages() {
+    const conversationId = "<%= @conversation.id %>"
+    const messageSegmentLoc = document.getElementById(`message-segment${conversationId}`);
+    const messageBodyLoc = document.getElementById(`message_body${conversationId}`);
+
+    let fetchedMessagesHTML = "";
+
+    <% @conversation.messages.each_with_index do |message, index| %>
+      
+        <% if current_user.id == message.user_id %>
+          
+          fetchedMessagesHTML += `<div class="mine messages">
+
+            <span class="mine message">${"kk"}</span>
+          </div>`
+        <% else %>
+
+          fetchedMessagesHTML += `<div class="yours messages">
+            <span class="yours message">${"zzuz"}</span>
+          </div>`
+        <% end %>
+    <% end %>
+    messageSegmentLoc.insertAdjacentHTML('beforeend', fetchedMessagesHTML);
+    
+    const messageHTML = `<div class="mine messages"> 
+                            <span class="mine message"> 
+                                ${messageBodyLoc.value}
+                            </span>
+                        </div>`
+    messageSegmentLoc.insertAdjacentHTML('beforeend', messageHTML);
+    
+    messageBodyLoc.value = "";
+}
