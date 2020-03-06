@@ -24,11 +24,11 @@
                 <% if (pram.brand.length + pram.model.length) < 28 %>
                   <h6><%= pram.brand %> <%= pram.model%></h6>
                 <% else %>
-                    <% model_char = 28 - pram.brand.length %>
+                    <% model_char = 45 - pram.brand.length %>
                     <h6><%= pram.brand%><%= pram.model[0, model_char]%></h6>
                 <% end %>
                 <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
-                <%= pram.location[0, 34] %></p>
+                <%= pram.location[0, 44] %></p>
               </div>
 
 

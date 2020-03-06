@@ -1,5 +1,8 @@
 require 'faker'
 require 'date'
+require "open-uri"
+
+puts "Started seed!"
 
 Review.destroy_all
 Booking.destroy_all
@@ -30,13 +33,40 @@ def randomDate
   return in_x_days
 end
 
+def randomPramPic
+  pram_array = [
+    'https://www.target.com.au/medias/static_content/product/images/full/19/95/A1241995.jpg',
+    'https://s.yimg.com/aah/albee-baby/milkbe-stroller-gold-4.jpg',
+    'https://cdn.shopify.com/s/files/1/0039/7157/9974/products/PDP_Stroller_Black_001-S_850x.png',
+    'https://www.kids-room.com/WebRoot/KidsroomDE/Shops/Kidsroom/5A17/038C/C00C/9424/04EE/4DEB/AE1C/2C4C/BILD3_05079564-105107/IC_IMAGE/en-chicco-double-stroller-strollin2-octane-2020-OCTANE.jpg',
+    'https://images-na.ssl-images-amazon.com/images/I/71wSWg6%2BJ%2BL._SY355_.jpg',
+    'https://babyzania.com/image/catalog/1/violi%20drive%20black.jpg',
+    'https://img.orami.co.id/media/catalog/product/cache/1/image/730x/0dc2d03fe217f8c83829496872af24a0/s/t/stro-coco-039a-1-2_1.jpg',
+    'https://image.smythstoys.com/original/desktop/165505.jpg'
+  ]
+  return pram_array.sample
+end
+
+def randomUserPic
+  user_array = ['https://pmcdeadline2.files.wordpress.com/2019/12/donald-trump-1-e1577049942608.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Mateusz_Morawiecki_Prezes_Rady_Ministr%C3%B3w_%28cropped%29.jpg/220px-Mateusz_Morawiecki_Prezes_Rady_Ministr%C3%B3w_%28cropped%29.jpg',
+    'https://media.tag24.de/951x634/4/b/4b674c5eeecf51f8c949.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/f/f2/Alain_Berset_2013.jpg',
+    'https://media04.wochenblatt-reporter.de/article/2019/03/30/5/136975_L.jpg'
+  ]
+  return user_array.sample
+end
+
 5.times {
-  User.create!(
+  user = User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
-    password: "123456"
-    )
+    password: "123456",
+  )
+
+  user.photo.attach(io: open(randomUserPic), filename: 'user.jpg', content_type: 'image/jpg')
+
 }
 
 1.times { Conversation.create!(
@@ -53,7 +83,8 @@ end
 }
 
 20.times {
-  Pram.create!(
+
+  pram = Pram.create!(
   brand: randomStrollerData[0],
   model: randomStrollerData[1],
   location: randomStrollerData[6],
@@ -62,6 +93,9 @@ end
   price: randomStrollerData[4],
   user_id: randomStrollerData[5]
   )
+
+  pram.photos.attach(io: open(randomPramPic), filename: 'pram.jpg', content_type: 'image/jpg')
+
 }
 
 10.times {
@@ -91,3 +125,5 @@ end
     booking_id: Booking.all.sample.id
   )
 }
+
+puts "End of seed!"

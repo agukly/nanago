@@ -1,101 +1,136 @@
 <div class="container pt-5">
-    <div class="row">
-        <div class="col-4  pt-3">
-            <div class="pb-2 d-flex flex-column align-items-center">
-            <% if @user.photo.attached? %>
-                <%= cl_image_tag @current_user.photo.key, class:"avatar-larger" %>
-            <% else %>
-                <%= image_tag "default_avatar.png", class:"avatar-larger" %>
-            <% end %>
-            <div class="pt-2">
+  <div class="row">
+    <div class="col-4 pt-3 d-flex flex-column align-items-center">
+      <div class="users-list pb-2 d-flex flex-column align-items-center">
+        <% if @user.photo.attached? %>
+          <%= cl_image_tag @current_user.photo.key, class:"avatar-larger" %>
+          <% else %>
+          <%= image_tag "default_avatar.png", class:"avatar-larger" %>
+          <% end %>
+          <div class="pt-2">
             <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-flat btn-sm mb-2" %>
-            </div>
-            </div>
-            <div>
-              <p class="py-0 m-0">Name: <%= current_user.first_name %></p>
-              <p class="py-0 m-0">Surname: <%= current_user.last_name %></p>
-            </div>
+          </div>
+        <div class="d-flex justify-content-between w-100">
+          <p class="py-1 m-0">Name:</p>
+          <%= current_user.first_name %>
         </div>
-        <div class="col pt-3">
-            <h1 pt-5>Welcome, <%= @user.first_name %></h1>
-            <p>A member since <%= @user.created_at.strftime("%B %Y")  %></p>
-            <h4 style="color: #8C56A2">My Prams (Top 5)</h3>
-            <div class="d-flex align-items-center">
-                <i class="fas fa-plus text-primary p-2"></i>
-                <%= link_to ' Add new pram', new_pram_path, class: "text-primary pr-2" %>
-            </div>
-            <% @user.prams.first(5).each do |pram| %>
-                <%= link_to pram_path(pram.id), class: 'card-pram' do %>
-                <div class="pt-3">
-                <div class="card-product">
-                    <% if pram.photos.attached? %>
-                        <%=cl_image_tag pram.photos[0].key %>
-                    <% else %>
-                        <%= image_tag "default-pram.jpg" %>
-                    <% end %>
-                    <div class="card-product-infos">
-                        <h2><%= pram.brand %> <%= pram.model %></h2>
-                        <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
-                        <%= pram.location %></p>
-                        <h5><strong><%= pram.price %> $</strong></h5>
-                        <% if pram.reviews.present?%>
-                            <% avg_score = pram.reviews.average(:score).to_i %>
-                            <% avg_score_float = pram.reviews.average(:score).to_f.round(2) %>
-                            <div class="text-warning">
-                            <% avg_score.times do %>
-                                <i class="fas fa-star"></i>
-                            <% end %>
-                            <% (5 - avg_score).times do %>
-                                <i class="far fa-star"></i>
-                            <% end %>
-                            </div>
-                            <h6>(<%= avg_score_float%>)</h6>
-                        <% else %>
-                            <p class>No reviews yet</p>
-                        <% end %>
-                    </div>
-                </div>
-                </div>
-                <% end %>
-            <% end %>
-            <h4 style="color: #8C56A2" class="pt-4">My bookings</h4>
+        <div class="d-flex justify-content-between w-100">
+          <p class="py-1 m-0">Surname:</p>
+          <%= current_user.last_name %>
+        </div>
+      </div>
+    </div>
 
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Upcoming</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Past</a>
-            </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <% @user.bookings.first(5).each do |booking| %>
-                        <% if Date.today < booking.end_day %>
-                            <%= link_to booking_path(booking.id), class: 'card-pram' do %>
-                                <div class="pt-3">
-                                    <div class="card-product">
-                                        <% if booking.pram.photos.attached? %>
-                                            <%=cl_image_tag booking.pram.photos[0].key %>
-                                        <% else %>
-                                            <%= image_tag "default-pram.jpg" %>
-                                        <% end %>
-                                        <div class="card-product-infos">
-                                            <div>
-                                                <h6><%=booking.pram.brand %> <%=booking.pram.model%></h6>
-                                                <p><%=booking.start_day.strftime("%e %B %Y") %> - <%=booking.end_day.strftime("%e %B %Y") %></p>
-                                                <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
-                                                <%= booking.pram.location %></p>
-                                            </div>
-                                            <h5><strong><%= booking.total_price %> $</strong></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            <% end %>
-                        <% end %>
-                    <% end %>
+    <div class="col pt-3">
+      <h1 pt-5>Welcome, <%= @user.first_name %></h1>
+        <p id="member-since">A member since <%= @user.created_at.strftime("%B %Y")%></p>
+          <hr>
+
+            <div class="top-5">
+              <div class="d-flex justify-content-between align-items-center">
+                <h3 class="text-primary">My Top Prams</h3>
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-plus text-primary p-2"></i>
+                  <%= link_to ' Add new pram', new_pram_path, class: "text-primary pr-2" %>
+                </div>
+              </div>
+
+<div class="d-flex flex-wrap">
+  <% @user.prams.first(5).each do |pram| %>
+    <div class="card-hover mt-3 pr-2" id="top-5">
+      <%= link_to pram_path(pram.id), class: 'card-pram' do %>
+        <div class="card-product" id="top-5">
+          <% if pram.photos.attached? %>
+              <%=cl_image_tag pram.photos[0].key %>
+            <% else %>
+              <%= image_tag "default-pram.jpg" %>
+            <% end %>
+          <div class="card-pram-infos">
+            <div>
+              <% if (pram.brand.length + pram.model.length) < 28 %>
+                  <h6><%= pram.brand %> <%= pram.model%></h6>
+                <% else %>
+                  <% model_char = 28 - pram.brand.length %>
+                  <h6><%= pram.brand%><%= pram.model[0, model_char]%></h6>
+                <% end %>
+                <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
+                  <%= pram.location[0, 34] %></p>
             </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="card-right-side">
+              <div class="card-rating">
+                <% if pram.reviews.present?%>
+                  <% avg_score = pram.reviews.average(:score).to_i %>
+                  <% avg_score_float = pram.reviews.average(:score).to_f.round(2) %>
+                  <div class="text-warning">
+                    <% avg_score.times do %>
+                      <i class="fas fa-star"></i>
+                    <% end %>
+                    <% (5 - avg_score).times do %>
+                      <i class="far fa-star"></i>
+                    <% end %>
+                  </div>
+                  <h6>(<%= avg_score_float%>)</h6>
+                <% else %>
+                  <p id="no-reviews">No reviews yet</p>
+                <% end %>
+              </div>
+              <h2 class="card-pram-pricing"><%= pram.price %>$</h2>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+</div>
+<br>
+<hr>
+
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h3 class="text-primary">My Bookings</h3>
+              </div>
+
+              <div>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Upcoming</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Past</a>
+                </li>
+                </ul>
+              </div>
+
+
+            <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active mt-1" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <% @user.bookings.first(5).each do |booking| %>
+                <% if Date.today < booking.end_day %>
+                  <%= link_to booking_path(booking.id), class: 'card-pram' do %>
+                   <div class="pt-3">
+                      <div class="card-product">
+                        <% if booking.pram.photos.attached? %>
+                            <%=cl_image_tag booking.pram.photos[0].key %>
+                        <% else %>
+                            <%= image_tag "default-pram.jpg" %>
+                        <% end %>
+                        <div class="card-product-infos">
+                          <div>
+                              <h6><%=booking.pram.brand %> <%=booking.pram.model%></h6>
+                              <p><%=booking.start_day.strftime("%e %B %Y") %> - <%=booking.end_day.strftime("%e %B %Y") %></p>
+                              <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
+                              <%= booking.pram.location %></p>
+                          </div>
+                        <h5><strong><%= booking.total_price %> $</strong></h5>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="tab-pane fade mt-1" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <% @user.bookings.first(5).each do |booking| %>
                         <% if Date.today > booking.end_day %>
                             <%= link_to booking_path(booking.id), class: 'card-pram' do %>

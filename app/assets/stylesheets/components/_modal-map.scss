@@ -1,0 +1,26 @@
+#exampleModal {
+  margin-top: 77px;
+  max-height: 600px;
+}
+
+.modal-content {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 15px;
+  margin-bottom: 25px;
+  border-style: none;
+}
+
+.close:focus {
+    outline: none !important;
+}
+
+.modal-title h5 {
+  color: #333333 !important;
+}
+
+.modal-footer {
+  background-color: white;
+  z-index: 9999;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}

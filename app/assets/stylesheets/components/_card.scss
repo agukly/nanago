@@ -20,7 +20,6 @@ a.text-primary:hover, a.text-primary:focus {
   height: 200px;
   background-position: center;
   background-size: cover;
-  border-radius: 15px;
 }
 
 #default-pram {
@@ -114,6 +113,12 @@ a.text-primary:hover, a.text-primary:focus {
   font-size: 12px;
   opacity: .7;
   margin: 0;
+  }
+}
+
+.card-hover {
+  a:hover {
+  color: black !important;
   }
 }
 
@@ -230,4 +235,11 @@ a.text-primary:hover, a.text-primary:focus {
 
 .review-time {
   font-size: 10px;
+  .home-card-info-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  }
+
+.home-card-info-left {
 }
