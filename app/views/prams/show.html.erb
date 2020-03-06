@@ -31,14 +31,14 @@
           <div class="owner-row-left">
           <% if @pram.user == current_user %>
             <% if @pram.user.photo.attached? %>
-              <%= cl_image_tag pram.user.photo.key, class:"avatar-small" %>
+              <%= cl_image_tag @pram.user.photo.key, class:"avatar-small" %>
             <% else %>
               <%= image_tag "default_avatar.png", class:"avatar-small" %>
             <% end %>
             <p class="text-muted font-weight-light">You</p>
           <% else %>
             <% if @pram.user.photo.attached? %>
-              <%= cl_image_tag pram.user.photo.key, class:"avatar-small" %>
+              <%= cl_image_tag @pram.user.photo.key, class:"avatar-small" %>
             <% else %>
               <%= image_tag "default_avatar.png", class:"avatar-small" %>
             <% end %>
@@ -103,10 +103,9 @@
 
   </div>
 </div>
+<div class="fixed-bottom m-0 p-0">
 <%= render 'shared/footer' %>
 
-
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

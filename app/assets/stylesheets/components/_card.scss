@@ -116,6 +116,12 @@ a.text-primary:hover, a.text-primary:focus {
   }
 }
 
+.card-hover {
+  a:hover {
+  color: black !important;
+  }
+}
+
 .card-pram .card-pram-infos {
   padding: 16px;
   display: flex;
