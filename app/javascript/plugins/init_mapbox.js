@@ -35,7 +35,20 @@ const initMapbox = () => {
     addMarkersToMap(map, markers);
     fitMapToMarkers(map, markers);
     map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl }));
+    window.map = map
+    bindModalMapButton();
   }
 };
+
+const bindModalMapButton = () => {
+  const modalButton = document.querySelector(".text-primary");
+  if (modalButton) {
+    modalButton.addEventListener("click", (e) => {
+      setTimeout(() => { map.resize(); }, 250)
+    })
+  }
+}
+
+
 
 export { initMapbox };

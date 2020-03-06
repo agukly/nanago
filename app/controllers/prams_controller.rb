@@ -21,6 +21,15 @@ class PramsController < ApplicationController
   def show
     @booking = Booking.new
     authorize @pram
+
+       @markers =
+      [{
+        lat: @pram.latitude,
+        lng: @pram.longitude,
+        # infoWindow: render_to_string(partial: "info_window", locals: { pram: pram })
+      }]
+
+
   end
 
   def new
