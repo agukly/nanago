@@ -13,9 +13,23 @@ def create
 
   authorize @message
 
+  #if @message.save
+  #  redirect_to conversation_path(@conversation)
+  #end
+  
   if @message.save
-    redirect_to conversation_path(@conversation)
+    respond_to do |format|
+      format.html { redirect_to conversation_path(@conversation) } # fallback for certain browsers
+      format.js  # <-- will render `app/views/messages/create.js.erb`
+    end
+  else
+    respond_to do |format|
+      format.html { redirect_to conversation_path(@conversation) }
+      format.js  # <-- will render `app/views/messages/create.js.erb`
+    end
   end
+
+
 end
 
 private

@@ -5,27 +5,25 @@
   <%# end %>
 
   <div class="message-content">
-        <div class="ui message-segment">
-
-    <% messages.each_with_index do |message, index| %>
-      <% last = 'last' if messages[index + 1] == nil %>
-      <% last = (messages[index + 1] && messages[index + 1].user_id == message.user_id) ? '' : 'last' %>
-      <% if current_user.id == message.user_id %>
-      <div class="mine messages">
-        <span class="mine message <%= last %>"><%= message.body %></span>
-      </div>
-      <% else %>
-      <div class="yours messages">
-        <span class="yours message <%= last %>"><%= message.body %></span>
-      </div>
+    <div class="ui message-segment" id="message-segment<%= conversation.id %>">
+      <% messages.each_with_index do |message, index| %>
+        <% last = 'last' if messages[index + 1] == nil %>
+        <% last = (messages[index + 1] && messages[index + 1].user_id == message.user_id) ? '' : 'last' %>
+        <% if current_user.id == message.user_id %>
+          <div class="mine messages">
+            <span class="mine message <%= last %>"><%= message.body %></span>
+          </div>
+        <% else %>
+          <div class="yours messages">
+            <span class="yours message <%= last %>"><%= message.body %></span>
+          </div>
+        <% end %>
       <% end %>
-
-   <% end %>
     </div>
   </div>
 
-  <%= simple_form_for [conversation, message] do |f| %>
-    <%= f.input :body, label: "New Message" %>
+  <%= simple_form_for([conversation, message], remote:true) do |f| %>
+    <%= f.input :body, label: "New Message", input_html:{id: "message_body#{conversation.id}"} %>
     <%= f.hidden_field :user_id, value: conversation.sender_id, type: "hidden"%>
     <%= f.submit "Send", class: "btn btn-flat"%>
   <% end %>
