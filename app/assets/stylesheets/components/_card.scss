@@ -195,12 +195,51 @@ a.text-primary:hover, a.text-primary:focus {
   padding: 0px;
 }
 
-.home-card-info-right {
+.review-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 600px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  text-decoration: none;
+  color: #333333;
+  border-radius: 15px !important;
+  margin-bottom: 20px;
+  h1 {
+    margin-bottom: 20px;
+  }
+}
+
+.review-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.review-header-right {
+  display: flex;
+  flex-direction: row;
+  align-item: center;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.review-header-left {
+  margin-left: 20px;
+  margin-top: 20px;
+  .avatar-small {
+    margin-right: 0px;
+  }
+}
+
+.review-time {
+  font-size: 10px;
+  .home-card-info-right {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-}
+  }
 
 .home-card-info-left {
-
 }

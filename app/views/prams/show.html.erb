@@ -102,6 +102,65 @@
     </div>
 
   </div>
+
+  <div class="row review-row py-5">
+
+    <div class=review-container>
+
+      <% if @pram.reviews.present? %>
+
+        <h1>Reviews</h1>
+        <hr>
+        <% @pram.reviews.each do |review| %>
+          <div class="review-card">
+            <div class="review-header">
+
+              <div class="review-header-left">
+
+                <% if review.booking.user.photo.attached? %>
+                  <%= cl_image_tag recipient.photo.key, class:"avatar-small" %>
+                <% else %>
+                  <%= image_tag "default_avatar.png", class:"avatar-small" %>
+                <% end %>
+
+                <%= "#{review.booking.user.first_name} #{review.booking.user.last_name}"%>
+
+              </div>
+
+              <div class="review-header-right">
+
+                <% avg_score = review.score.to_i %>
+
+                  <div class="text-warning">
+                    <% avg_score.times do %>
+                      <i class="fas fa-star"></i>
+                    <% end %>
+                      <% (5 - avg_score).times do %>
+                        <i class="far fa-star"></i>
+                      <% end %>
+                  </div>
+              </div>
+
+            </div>
+              <div class="review-time text-muted font-weight-light">
+                <p><%= review.created_at.strftime("%e %B %Y") %></p>
+              </div>
+
+            <div class="review-comment text-muted font-weight-light">
+              <%= review.comment %>
+            </div>
+
+          </div>
+        <% end %>
+
+      <% end %>
+
+    </div>
+  </div>
+<%= render 'shared/footer' %>
+
+</div>
+
 </div>
 <div class="fixed-bottom m-0 p-0">
 <%= render 'shared/footer' %>
