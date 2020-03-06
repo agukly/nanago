@@ -13,7 +13,7 @@ class Pram < ApplicationRecord
   validates  :model, presence: true, length: { maximum: 200 }
   validates  :location, presence: true, length: { maximum: 200 }
   validates  :brand, presence: true, length: { maximum: 200 }
-  validates  :description, presence: true, length: { maximum: 200 }
+  validates  :description, presence: true
   validates  :year, presence: true, numericality: { only_integer: true }
 
   pg_search_scope :search_by_brand_and_model_and_location,
@@ -22,7 +22,6 @@ class Pram < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
-
 
   def unavailable_dates
     bookings.pluck(:start_day, :end_day).map do |range|

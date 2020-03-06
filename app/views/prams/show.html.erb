@@ -65,7 +65,7 @@
                <%= simple_form_for([@pram, @booking]) do |f| %>
                    <%= f.input :start_day, as: :string, type: :text %>
                    <%= f.input :end_day, as: :string, type: :text %>
-                   <%= f.submit "Book", class: "btn btn-flat", html: {id: :check_submit} %>
+                   <%= f.submit "Book", class: "btn btn-flat button-book", html: {id: :check_submit} %>
                 <% end %>
             <% end %>
          </div>
@@ -102,3 +102,4 @@
   </div>
 </div>
 <%= render 'shared/footer' %>
+
