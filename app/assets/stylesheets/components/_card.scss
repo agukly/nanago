@@ -20,6 +20,11 @@ a.text-primary:hover, a.text-primary:focus {
   height: 200px;
   background-position: center;
   background-size: cover;
+  img {
+    height: 100%;
+    // width: 120px;
+    object-fit: cover;
+  }
 }
 
 #default-pram {
