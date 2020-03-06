@@ -2,6 +2,7 @@
   justify-content: space-between;
   background: white;
   box-shadow: 0 0 1rem rgba(0,0,0,0.15) !important;
+  position: relative;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -21,3 +22,20 @@
 .nanago {
   width: 90px !important;
 }
+
+.navbar-toggler {
+  position: absolute;
+  bottom: -55px;
+  right: 15px;
+  border-color: rgba(0, 0, 0, 0) !important;
+
+}
+
+.dropdown-menu {
+  border-radius: 15px;
+}
+
+.dropdown-item:active {
+  background-color: #B3EBF9;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  }
