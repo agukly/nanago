@@ -2,7 +2,6 @@
   border-radius: 15px;
 }
 
-
 .btn-ghost {
   color: #4A4A4A;
   padding: 8px 24px;
@@ -73,3 +72,23 @@
   background-color: #8C56A2;
   border-color: #8C56A2;
 }
+
+.fa-trash-alt {
+  color: #6C757D;
+  transition: background 0.3s ease;
+}
+
+.fa-trash-alt:hover {
+  color: #B3EBF9;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.flash-success {
+  a {
+    text-decoration: none;
+    color: black;
+    }
+  a:hover {
+    color: #B3EBF9;
+    }
+  }
