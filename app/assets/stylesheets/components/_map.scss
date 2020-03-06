@@ -4,12 +4,36 @@
 
 .mapboxgl-popup-content {
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  border-radius: 15px !important;
+
+  a{
+    color: #333333;
+    text-decoration: none;
+    background-color: transparent;
+  }
+
+  a:hover {
+    text-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+
+  h3 {
+    color: #333333 !important;
+    text-decoration: none;
+    background-color: transparent;
+  }
+
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.0);
+  }
+
+  button:focus {
+    outline: none !important;
+  }
 }
 
 #map {
   position: sticky;
-  top: 0;
+  top: 77px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 15px;
   margin-bottom: 25px;
