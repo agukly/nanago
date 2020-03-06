@@ -34,7 +34,7 @@
         <% @conversations.each_with_index do |conversation, index| %>
            <a class="nav-link <%= 'active' if index.zero? %>" id="n-<%= conversation.id %>-conversation-tab" data-toggle="pill" href="#n-<%= conversation.id %>-conversation" role="tab" aria-controls="<%= conversation.id %>-conversation" aria-selected="false">
             <% if current_user.photo.attached? %>
-              <%= current_user.messaging_with(conversation).photo.key class: "avatar-small mr-2" %>
+              <%= cl_image_tag current_user.messaging_with(conversation).photo.key, class: "avatar-small mr-2" %>
             <% else %>
               <%= image_tag "default_avatar.png", class: "avatar-small mr-2" %>
             <% end %>
