@@ -24,3 +24,6 @@
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
+.modal-backdrop.show {
+  z-index: 10;
+}
