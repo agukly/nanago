@@ -1,5 +1,5 @@
 <% if notice %>
-   <% if notice == "Pram was successfully created." || "Booking was successfully created."%>
+   <% if notice ==( "Pram was successfully created." || "Booking was successfully created.")%>
     <div class="flash flash-success alert alert-dismissible fade show" role="alert">
       <span><strong>Yay!</strong> 🎉 your booking was successfull - Go to  <%= link_to "your profile", dashboard_path%> to check.   </span>
       <a data-dismiss="alert" aria-label="Close">
