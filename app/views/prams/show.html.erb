@@ -31,14 +31,14 @@
           <div class="owner-row-left">
           <% if @pram.user == current_user %>
             <% if @pram.user.photo.attached? %>
-              <%= cl_image_tag recipient.photo.key, class:"avatar-small" %>
+              <%= cl_image_tag @pram.user.photo.key, class:"avatar-small" %>
             <% else %>
               <%= image_tag "default_avatar.png", class:"avatar-small" %>
             <% end %>
             <p class="text-muted font-weight-light">You</p>
           <% else %>
             <% if @pram.user.photo.attached? %>
-              <%= cl_image_tag recipient.photo.key, class:"avatar-small" %>
+              <%= cl_image_tag @pram.user.photo.key, class:"avatar-small" %>
             <% else %>
               <%= image_tag "default_avatar.png", class:"avatar-small" %>
             <% end %>

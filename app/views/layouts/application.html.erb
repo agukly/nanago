@@ -10,7 +10,7 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <% unless params[:controller] == "prams" && params[:action] == "new" || params[:controller] == "devise/sessions" && params[:action] == "new" || params[:controller] == "devise/registrations" && params[:action] == "new"%>
+    <% unless params[:controller] == "prams" && params[:action] == "new" || params[:controller] == "devise/sessions" && params[:action] == "new" || params[:controller] == "devise/registrations" && params[:action] == "new" || params[:controller] == "devise/registrations" && params[:action] == "edit"%>
       <%= render 'shared/navbar' %>
     <% end %>
       <%= yield %>

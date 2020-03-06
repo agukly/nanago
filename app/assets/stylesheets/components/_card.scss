@@ -11,6 +11,11 @@ h6 {
 .text-primary {
   color: #8C56A2 !important;
 }
+
+a.text-primary:hover, a.text-primary:focus {
+    color: #8C56A2 !important;
+}
+
 .main-card-picture {
   height: 200px;
   background-position: center;
