@@ -2,7 +2,6 @@
   border-radius: 15px;
 }
 
-
 .btn-ghost {
   color: #4A4A4A;
   padding: 8px 24px;
@@ -20,6 +19,10 @@
   box-shadow: none;
 }
 
+.btn:focus {
+  box-shadow: none;
+}
+
 .btn-flat {
   color: white;
   padding: 8px 24px;
@@ -32,6 +35,28 @@
   background: #B3EBF9;
   color: white;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.btn-flat-opposite {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 15px;
+  background: #B3EBF9;
+  transition: background 0.3s ease;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.btn-flat-opposite:hover {
+  background: #8C56A2;
+  color: white;
+}
+
+.btn-flat-danger {
+  background-color: red;
+  color: white;
+  padding: 8px 24px;
+  border-radius: 15px;
+  transition: background 0.3s ease;
 }
 
 .btn-gradient {
@@ -72,4 +97,10 @@
   color: #fff;
   background-color: #8C56A2;
   border-color: #8C56A2;
+}
+
+#see-all {
+  font-size: 24px;
+  padding: 15px;
+
 }

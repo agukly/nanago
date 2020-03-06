@@ -1,12 +1,12 @@
 <div class="container-fluid px-3 w-100">
   <div class="row min-vh-100 d-flex">
-    <div class="col-md-8 col-lg-6 col-xl-5 d-flex align-items-center">
+    <div class="col-md-8 col-lg-6 col-xl-5 d-flex align-items-top">
     <div class="w-100 py-5 px-md-5 p-xl-6 position-relative">
       <div class="mb-5">
         <%= image_tag "logo-main.png", class: "box-logo img-fluid mb-3" %>
         <h2 class="form-title">Edit profile</h2>
         <div class="close-absolute mr-md-5 mr-xl-6 pt-5">
-          <%= link_to :back do %>
+          <%= link_to dashboard_path do %>
           <i class="fas fa-times"></i>
           <% end %>
         </div>
@@ -38,16 +38,14 @@
                 input_html: { autocomplete: "current-password" } %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update", class: "btn btn-lg btn-block btn-primary" %>
+  <div class="form-actions mb-3">
+    <%= f.button :submit, "Update", class: "btn btn-flat btn-block" %>
   </div>
 <% end %>
 
 
-<div class="pt-4">
-<%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-lg btn-block btn-danger" %></p>
+<%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-flat-danger btn-block btn-danger" %></p>
 
-</div>
 
         </div>
     </div>

@@ -22,6 +22,16 @@
   background-color: #fff;
 }
 
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem #B3EBF9;
+  border-color: transparent;
+}
+
+.form-control.is-valid {
+    border-color: #8C56A2 !important;
+    box-shadow: 0 0 0 0.2rem rgba(140, 86, 162, 0.25) !important;
+    }
+
 label {
   color: #868e96;
   font-size: .8rem;
