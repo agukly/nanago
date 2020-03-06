@@ -22,9 +22,9 @@
             <% end %>
               <div class="card-pram-infos">
               <div class="home-card-info-left">
-                <h6><%= pram.brand %> <%= pram.model %></h6>
+                <h6><%= pram.brand %> <%= pram.model[0..20] %>...</h6>
                 <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
-                <%= pram.location %></p>
+                <%= pram.location[0..25] %>...</p>
               </div>
               <div class="home-card-info-right">
                 <h2 class="card-pram-pricing"><%= pram.price %>$</h2>
