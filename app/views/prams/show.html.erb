@@ -118,7 +118,7 @@
               <div class="review-header-left">
 
                 <% if review.booking.user.photo.attached? %>
-                  <%= cl_image_tag recipient.photo.key, class:"avatar-small" %>
+                  <%= cl_image_tag review.booking.user.photo.key, class:"avatar-small" %>
                 <% else %>
                   <%= image_tag "default_avatar.png", class:"avatar-small" %>
                 <% end %>

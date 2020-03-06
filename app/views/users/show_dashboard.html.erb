@@ -3,9 +3,9 @@
     <div class="col-4 pt-3 d-flex flex-column align-items-center">
       <div class="users-list pb-2 d-flex flex-column align-items-center">
         <% if @user.photo.attached? %>
-          <%= cl_image_tag @current_user.photo.key, class:"avatar-larger" %>
+          <%= cl_image_tag @current_user.photo.key, class:"avatar-larger profile" %>
           <% else %>
-          <%= image_tag "default_avatar.png", class:"avatar-larger" %>
+          <%= image_tag "default_avatar.png", class:"avatar-larger profile" %>
           <% end %>
           <div class="pt-2">
             <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-flat btn-sm mb-2" %>
