@@ -21,12 +21,14 @@
               </div>
             <% end %>
               <div class="card-pram-infos">
-              <div>
+              <div class="home-card-info-left">
                 <h6><%= pram.brand %> <%= pram.model %></h6>
                 <p class="text-primary"><i class="fa-map-marker-alt fa mr-1 text-primary"></i>
                 <%= pram.location %></p>
               </div>
-              <h2 class="card-pram-pricing"><%= pram.price %>$</h2>
+              <div class="home-card-info-right">
+                <h2 class="card-pram-pricing"><%= pram.price %>$</h2>
+              </div>
           </div>
         </div>
       </div>
